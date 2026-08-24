@@ -15,6 +15,6 @@ Then visit `http://localhost:8000`.
 ## Project files
 
 - `index.html` contains the home page.
-- `about.html`, `services.html`, `projects.html`, `pricing.html`, and `contact.html` contain the other pages.
-- `styles.css` contains the visual styles and responsive layout.
-- `script.js` handles the mobile menu and contact form feedback.
+- `pages/` contains `about.html`, `services.html`, `projects.html`, `pricing.html`, and `contact.html`.
+- `css/styles.css` contains the visual styles and responsive layout.
+- `js/script.js` handles the mobile menu and contact form feedback.
