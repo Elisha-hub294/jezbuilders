@@ -1,33 +1,30 @@
 import { useEffect, useState } from 'react';
 import './App.css';
+import { Logo, Nav } from './components/Navigation';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Home from './pages/Home';
+import Pricing from './pages/Pricing';
+import Projects from './pages/Projects';
+import Services from './pages/Services';
 
 const screens = ['home', 'about', 'services', 'projects', 'pricing', 'contact'];
-const serviceItems = [
-  { number: '01', title: 'Product engineering', text: 'From first prototype to resilient production systems, we build software that is ready for real users.' },
-  { number: '02', title: 'Web experiences', text: 'Fast, expressive websites and platforms that make complicated products feel remarkably simple.' },
-  { number: '03', title: 'Technical direction', text: 'A clear path through architecture, tooling, and delivery when your team needs an experienced second brain.' },
-];
 
-function navigateTo(screen) { window.location.hash = screen === 'home' ? '' : screen; }
-function Logo() { return <button className="logo" onClick={() => navigateTo('home')} aria-label="Go to JEZBuilders home"><span>JZ</span><strong>JEZ<br />BUILDERS</strong></button>; }
-function Nav({ current }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  return <header className="site-header"><Logo /><button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">{menuOpen ? 'CLOSE' : 'MENU'} <span>{menuOpen ? '×' : '☰'}</span></button><nav className={menuOpen ? 'nav-links open' : 'nav-links'} aria-label="Main navigation">{screens.slice(1).map((screen) => <button key={screen} className={current === screen ? 'active' : ''} onClick={() => { navigateTo(screen); setMenuOpen(false); }}>{screen}</button>)}<button className="nav-cta" onClick={() => { navigateTo('contact'); setMenuOpen(false); }}>Start a project <span>↗</span></button></nav></header>;
+function getScreen() {
+  return window.location.hash.replace('#', '') || 'home';
 }
-function ArrowLink({ children, screen = 'contact' }) { return <button className="arrow-link" onClick={() => navigateTo(screen)}>{children} <span>↗</span></button>; }
-
-function Home() { return <main className="home-page"><section className="hero section-pad"><div className="eyebrow"><span className="signal-dot" /> Independent digital builders / EST. 2019</div><h1>Good ideas<br /><em>deserve</em><br />good software.</h1><div className="hero-bottom"><p className="hero-copy">We design and build sharp, useful digital products for teams who care about the details.</p><ArrowLink screen="services">See what we do</ArrowLink></div><div className="hero-mark" aria-hidden="true"><span>✳</span><span>✳</span><span>✳</span></div></section><section className="ticker"><span>Strategy</span><i>✳</i><span>Design</span><i>✳</i><span>Engineering</span><i>✳</i><span>Strategy</span><i>✳</i><span>Design</span></section><section className="intro section-pad"><div className="section-label">[ 001 / The short version ]</div><div><h2>Small team.<br /><span>Serious output.</span></h2><p className="large-copy">JEZBuilders is a close-knit team of designers and engineers. We join early, think clearly, and stay close until the work is in the world.</p><ArrowLink screen="about">More about us</ArrowLink></div></section><section className="feature-strip"><div className="feature-image"><div className="code-window"><span className="window-dots">● ● ●</span><code><b>const</b> product = {'{'}<br />&nbsp;&nbsp;clarity: <em>true</em>,<br />&nbsp;&nbsp;craft: <em>'high'</em>,<br />&nbsp;&nbsp;impact: <em>'real'</em><br />{'}'};</code></div></div><div className="feature-note"><span>Selected work / 2024</span><h3>Building a calmer way to manage complexity.</h3><ArrowLink screen="projects">View projects</ArrowLink></div></section></main>; }
-function About() { return <main className="inner-page section-pad"><div className="page-intro"><div className="eyebrow"><span className="signal-dot" /> About JEZBuilders</div><h1>We make the<br /><em>complex</em> feel clear.</h1><p>We are a small, senior team for ambitious people building what comes next.</p></div><div className="about-grid"><div className="section-label">[ 002 / Our approach ]</div><div><h2>Less noise.<br /><span>More momentum.</span></h2><p className="large-copy">The best digital work happens when strategy, design, and technology speak the same language. We bring those disciplines together in one thoughtful, accountable team.</p><div className="stats"><div><strong>06</strong><span>Years building</span></div><div><strong>28</strong><span>Products shipped</span></div><div><strong>04</strong><span>Continents reached</span></div></div></div></div><div className="manifesto"><div>We ask better questions.</div><div>We sweat the small stuff.</div><div>We leave things better.</div></div></main>; }
-function Services() { return <main className="inner-page section-pad"><div className="page-intro compact"><div className="eyebrow"><span className="signal-dot" /> Capabilities</div><h1>Built for the<br /><em>next move.</em></h1></div><div className="service-list">{serviceItems.map((item) => <article className="service-item" key={item.number}><span className="item-number">{item.number}</span><h2>{item.title}</h2><p>{item.text}</p><span className="item-arrow">↗</span></article>)}</div><div className="service-footer"><p>Have something in mind? Even if it is still a little fuzzy, we would like to hear about it.</p><ArrowLink /></div></main>; }
-function Projects() { return <main className="inner-page section-pad"><div className="page-intro compact"><div className="eyebrow"><span className="signal-dot" /> A few things we have made</div><h1>Work with<br /><em>weight.</em></h1></div><div className="project-grid"><article className="project-card project-orange"><div className="project-visual"><span className="orbit orbit-one" /><span className="orbit orbit-two" /><b>north<br />star</b></div><span>Northstar / Brand platform</span><h2>Turning a new category into a clear point of view.</h2></article><article className="project-card project-green"><div className="project-visual"><div className="dashboard"><span /><span /><span /><strong>72%</strong></div></div><span>Fieldwork / SaaS product</span><h2>Making data feel like a useful conversation.</h2></article></div></main>; }
-function Pricing() { return <main className="inner-page section-pad"><div className="page-intro compact"><div className="eyebrow"><span className="signal-dot" /> Simple ways to work together</div><h1>Good work has<br /><em>no surprises.</em></h1></div><div className="pricing-grid"><article><span>01 / Focus</span><h2>Discovery sprint</h2><p>Get unstuck and leave with a clear product direction, a useful plan, and the confidence to move.</p><strong>From $4,500</strong></article><article className="price-featured"><span>02 / Build</span><h2>Product partnership</h2><p>A focused senior team beside yours, taking a meaningful product from idea to launch.</p><strong>From $12,000 / mo</strong></article><article><span>03 / Support</span><h2>Design + engineering</h2><p>Bring us in where you need extra range, thoughtful execution, or a faster path through a hard problem.</p><strong>Custom scope</strong></article></div><p className="price-note">Every engagement starts with a conversation. We will recommend the right shape for the work, not the biggest one.</p><ArrowLink /></main>; }
-function Contact() { return <main className="inner-page contact-page section-pad"><div className="page-intro compact"><div className="eyebrow"><span className="signal-dot" /> Your next chapter starts here</div><h1>Let's make<br /><em>something real.</em></h1></div><div className="contact-grid"><div><p className="large-copy">Tell us what you are building, where you are stuck, or just what you cannot stop thinking about.</p><a className="email-link" href="mailto:hello@jezbuilders.com">hello@jezbuilders.com <span>↗</span></a></div><form onSubmit={(event) => event.preventDefault()}><label>Your name<input placeholder="Jane Smith" /></label><label>Work email<input type="email" placeholder="jane@company.com" /></label><label>Tell us a little about it<textarea placeholder="What are you working on?" rows="4" /></label><button className="submit-button" type="submit">Send enquiry <span>↗</span></button></form></div></main>; }
 
 function App() {
-  const getScreen = () => window.location.hash.replace('#', '') || 'home';
   const [current, setCurrent] = useState(getScreen);
-  useEffect(() => { const onHashChange = () => setCurrent(getScreen()); window.addEventListener('hashchange', onHashChange); return () => window.removeEventListener('hashchange', onHashChange); }, []);
+
+  useEffect(() => {
+    const onHashChange = () => setCurrent(getScreen());
+    window.addEventListener('hashchange', onHashChange);
+    return () => window.removeEventListener('hashchange', onHashChange);
+  }, []);
+
   const pages = { home: <Home />, about: <About />, services: <Services />, projects: <Projects />, pricing: <Pricing />, contact: <Contact /> };
+
   return <div className="App"><Nav current={current} />{pages[screens.includes(current) ? current : 'home']}<footer><Logo /><span>© 2024 JEZBuilders. Built with intent.</span><span>Based everywhere / Working worldwide</span></footer></div>;
 }
 
