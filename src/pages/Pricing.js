@@ -1,5 +1,0 @@
-import ArrowLink from '../components/ArrowLink';
-
-export default function Pricing() {
-  return <main className="inner-page section-pad"><div className="page-intro compact"><div className="eyebrow"><span className="signal-dot" /> Simple ways to work together</div><h1>Good work has<br /><em>no surprises.</em></h1></div><div className="pricing-grid"><article><span>01 / Focus</span><h2>Discovery sprint</h2><p>Get unstuck and leave with a clear product direction, a useful plan, and the confidence to move.</p><strong>From $4,500</strong></article><article className="price-featured"><span>02 / Build</span><h2>Product partnership</h2><p>A focused senior team beside yours, taking a meaningful product from idea to launch.</p><strong>From $12,000 / mo</strong></article><article><span>03 / Support</span><h2>Design + engineering</h2><p>Bring us in where you need extra range, thoughtful execution, or a faster path through a hard problem.</p><strong>Custom scope</strong></article></div><p className="price-note">Every engagement starts with a conversation. We will recommend the right shape for the work, not the biggest one.</p><ArrowLink /></main>;
-}

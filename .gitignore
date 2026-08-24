@@ -1,23 +1,16 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Local dependencies, if installed for tooling
+/node_modules/
 
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# Local configuration
+.env
+.env.*
+!.env.example
 
-# testing
-/coverage
-
-# production
-/build
-
-# misc
+# OS and editor files
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.vscode/
+.idea/
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# Logs
+*.log
+
