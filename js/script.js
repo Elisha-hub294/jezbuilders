@@ -14,6 +14,101 @@ const aboutPage = document.querySelector(".about-page");
 if (aboutPage) {
   document.body.classList.add("has-scroll-reveal");
 
+  const typingHeadline = aboutPage.querySelector(".typing-headline");
+  if (typingHeadline) {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (!prefersReducedMotion) {
+      const prefix = typingHeadline.querySelector(".typing-prefix");
+      const emphasis = typingHeadline.querySelector("em");
+      const resizeHeadline = () => {
+        typingHeadline.style.height = `${typingHeadline.getBoundingClientRect().height}px`;
+        void typingHeadline.offsetHeight;
+        typingHeadline.style.height = `${typingHeadline.scrollHeight}px`;
+      };
+      const messages = [
+        { prefix: "We build what ", emphasis: "moves you forward." },
+        { prefix: "Ideas become ", emphasis: "digital products." },
+        { prefix: "Good software starts with ", emphasis: "clarity." },
+        { prefix: "We turn ambition into ", emphasis: "momentum." },
+      ];
+      let messageIndex = 0;
+
+      const updateAccessibleLabel = (message) => {
+        typingHeadline.setAttribute(
+          "aria-label",
+          `${message.prefix}${message.emphasis}`,
+        );
+      };
+
+      const typeMessage = (message, onComplete) => {
+        const parts = [
+          { element: prefix, text: message.prefix },
+          { element: emphasis, text: message.emphasis },
+        ];
+        let partIndex = 0;
+        let characterIndex = 0;
+        prefix.textContent = "";
+        emphasis.textContent = "";
+        updateAccessibleLabel(message);
+        resizeHeadline();
+
+        const typeNextCharacter = () => {
+          const part = parts[partIndex];
+          if (!part) {
+            onComplete();
+            return;
+          }
+
+          part.element.textContent += part.text[characterIndex];
+          resizeHeadline();
+          characterIndex += 1;
+          if (characterIndex >= part.text.length) {
+            partIndex += 1;
+            characterIndex = 0;
+          }
+          window.setTimeout(typeNextCharacter, 62);
+        };
+
+        typeNextCharacter();
+      };
+
+      const deleteMessage = (onComplete) => {
+        const parts = [emphasis, prefix];
+        let partIndex = 0;
+
+        const deleteNextCharacter = () => {
+          const part = parts[partIndex];
+          if (!part) {
+            onComplete();
+            return;
+          }
+
+          part.textContent = part.textContent.slice(0, -1);
+          resizeHeadline();
+          if (!part.textContent) partIndex += 1;
+          window.setTimeout(deleteNextCharacter, 35);
+        };
+
+        deleteNextCharacter();
+      };
+
+      const rotateMessage = () => {
+        const waitTime = 10000 + Math.random() * 10000;
+        window.setTimeout(() => {
+          deleteMessage(() => {
+            messageIndex = (messageIndex + 1) % messages.length;
+            typeMessage(messages[messageIndex], rotateMessage);
+          });
+        }, waitTime);
+      };
+
+      typeMessage(messages[messageIndex], rotateMessage);
+    }
+  }
+
   const revealItems = aboutPage.querySelectorAll(
     ".about-section, .philosophy-band, .about-cta, .about-card, .team-card, .principles-grid article, .process-grid article",
   );
