@@ -1,0 +1,585 @@
+.about-page {
+  --muted: rgba(241, 240, 233, 0.66);
+}
+body.has-scroll-reveal .site-header {
+  background: rgba(24, 32, 29, 0.92);
+  position: sticky;
+  top: 0;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+  z-index: 10;
+}
+body.has-scroll-reveal .site-header.is-scrolled {
+  background: rgba(24, 32, 29, 0.98);
+  border-color: rgba(215, 243, 107, 0.35);
+}
+.has-scroll-reveal .reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.65s ease var(--reveal-delay, 0ms),
+    transform 0.65s ease var(--reveal-delay, 0ms);
+}
+.has-scroll-reveal .reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.about-page h2 {
+  font:
+    400 clamp(40px, 5.5vw, 78px)/0.92 "Space Grotesk",
+    sans-serif;
+  letter-spacing: -0.06em;
+  margin: 0 0 28px;
+  max-width: 760px;
+}
+.about-page h2 span {
+  color: var(--acid);
+}
+.about-hero {
+  align-items: center;
+  display: grid;
+  gap: 8vw;
+  grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+  min-height: 680px;
+  padding-bottom: 90px;
+  padding-top: 90px;
+}
+.about-hero-copy h1 {
+  font-size: clamp(52px, 7vw, 100px);
+  line-height: 0.88;
+  margin: 42px 0 32px;
+  max-width: 850px;
+}
+.about-hero-copy p,
+.section-heading p,
+.about-cta p {
+  color: var(--muted);
+  font:
+    400 17px/1.6 "Space Grotesk",
+    sans-serif;
+  max-width: 510px;
+}
+.about-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 38px;
+}
+.about-button {
+  align-items: center;
+  background: var(--acid);
+  color: var(--ink);
+  display: inline-flex;
+  font:
+    700 12px "IBM Plex Mono",
+    monospace;
+  gap: 32px;
+  padding: 16px 18px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.about-button:hover {
+  box-shadow: 5px 5px 0 var(--coral);
+  transform: translate(-2px, -2px);
+}
+.about-button span {
+  font-size: 17px;
+}
+.about-visual {
+  min-height: 410px;
+  padding: 25px 0 0 25px;
+  position: relative;
+}
+.visual-caption,
+.visual-tag,
+.visual-top,
+.visual-code,
+.visual-bar {
+  font:
+    10px "IBM Plex Mono",
+    monospace;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+.visual-caption {
+  color: var(--acid);
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+.visual-frame {
+  background: #27322d;
+  border: 1px solid rgba(241, 240, 233, 0.25);
+  box-shadow: 14px 14px 0 var(--coral);
+  min-height: 330px;
+  padding: 22px;
+  transform: rotate(3deg);
+}
+.visual-top {
+  border-bottom: 1px solid rgba(241, 240, 233, 0.2);
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 14px;
+}
+.visual-top span:last-child {
+  color: var(--coral);
+  letter-spacing: 2px;
+}
+.visual-code {
+  color: #eff4ed;
+  display: grid;
+  gap: 13px;
+  line-height: 1.35;
+  padding: 48px 12px 35px;
+  text-transform: none;
+}
+.visual-code .code-muted {
+  color: rgba(241, 240, 233, 0.35);
+}
+.visual-code b {
+  color: var(--acid);
+  font-weight: 400;
+}
+.visual-code i,
+.visual-code strong {
+  color: var(--coral);
+  font-style: normal;
+  font-weight: 400;
+}
+.code-indent {
+  padding-left: 28px;
+}
+.visual-bar {
+  align-items: center;
+  border-top: 1px solid rgba(241, 240, 233, 0.2);
+  color: var(--acid);
+  display: flex;
+  gap: 10px;
+  padding-top: 14px;
+}
+.visual-bar span {
+  background: var(--acid);
+  display: block;
+  height: 4px;
+  width: 70%;
+}
+.visual-tag {
+  background: var(--acid);
+  bottom: 0;
+  color: var(--ink);
+  padding: 12px 14px;
+  position: absolute;
+  right: -8px;
+}
+.about-section {
+  padding-bottom: 125px;
+  padding-top: 125px;
+}
+.focus-layout,
+.section-heading {
+  display: grid;
+  gap: 8vw;
+  grid-template-columns: 1.1fr 0.9fr;
+}
+.focus-layout {
+  margin-top: 10px;
+}
+.stat-grid {
+  align-self: end;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding-top: 18px;
+}
+.stat-grid div {
+  display: grid;
+  gap: 8px;
+}
+.stat-grid strong {
+  color: var(--acid);
+  font:
+    400 48px "Space Grotesk",
+    sans-serif;
+}
+.stat-grid span,
+.team-card p,
+.team-card small {
+  color: var(--muted);
+  font:
+    10px "IBM Plex Mono",
+    monospace;
+  text-transform: uppercase;
+}
+.manifesto {
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 110px;
+  padding-top: 23px;
+}
+.manifesto div {
+  font:
+    400 clamp(21px, 2.5vw, 36px) "Space Grotesk",
+    sans-serif;
+  letter-spacing: -0.05em;
+}
+.manifesto div:nth-child(2) {
+  color: var(--acid);
+  text-align: center;
+}
+.manifesto div:last-child {
+  text-align: right;
+}
+.section-heading {
+  align-items: end;
+  margin-bottom: 58px;
+}
+.section-heading p {
+  font-size: 14px;
+  max-width: 300px;
+}
+.about-card-grid,
+.team-grid,
+.principles-grid,
+.process-grid {
+  display: grid;
+  gap: 16px;
+}
+.services-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+.about-card {
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  min-height: 310px;
+  padding: 22px;
+  position: relative;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+.about-card:hover {
+  background: rgba(241, 240, 233, 0.06);
+  transform: translateY(-5px);
+}
+.about-card.card-acid,
+.about-card.card-coral {
+  color: var(--ink);
+}
+.about-card.card-acid {
+  background: var(--acid);
+  border-color: var(--acid);
+}
+.about-card.card-coral {
+  background: var(--coral);
+  border-color: var(--coral);
+}
+.card-index,
+.card-mark {
+  font:
+    11px "IBM Plex Mono",
+    monospace;
+}
+.card-mark {
+  margin-top: auto;
+}
+.about-card h3 {
+  font:
+    400 25px/1.05 "Space Grotesk",
+    sans-serif;
+  letter-spacing: -0.04em;
+  margin: 68px 0 14px;
+  max-width: 180px;
+}
+.about-card p {
+  font:
+    14px/1.5 "Space Grotesk",
+    sans-serif;
+  max-width: 220px;
+}
+.philosophy-band {
+  background: #c8d3cb;
+  color: var(--ink);
+  padding: 125px 0;
+}
+.philosophy-band .section-label {
+  color: rgba(24, 32, 29, 0.6);
+}
+.philosophy-inner {
+  display: grid;
+  gap: 8vw;
+  grid-template-columns: 1fr 2fr;
+}
+.philosophy-band h2 span {
+  color: #e35d49;
+}
+.principles-grid {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 64px;
+}
+.principles-grid article {
+  border-top: 1px solid rgba(24, 32, 29, 0.28);
+  padding: 16px 0 25px;
+}
+.principles-grid b {
+  color: #e35d49;
+  font:
+    11px "IBM Plex Mono",
+    monospace;
+}
+.principles-grid h3 {
+  font:
+    400 25px "Space Grotesk",
+    sans-serif;
+  margin: 36px 0 10px;
+}
+.principles-grid p {
+  font:
+    14px/1.5 "Space Grotesk",
+    sans-serif;
+  max-width: 260px;
+}
+.team-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+.team-card {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  transition: transform 0.2s ease;
+}
+.team-card:hover {
+  transform: translateY(-5px);
+}
+.avatar {
+  align-items: center;
+  aspect-ratio: 1;
+  background: #c8d3cb;
+  color: var(--ink);
+  display: flex;
+  font:
+    400 clamp(42px, 5vw, 70px) "Space Grotesk",
+    sans-serif;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.avatar-elisha {
+  background: var(--acid);
+}
+.avatar-zodexele {
+  background: var(--coral);
+}
+.avatar-baraka {
+  background: #8ca99a;
+}
+.team-number {
+  color: var(--acid);
+  font:
+    10px "IBM Plex Mono",
+    monospace;
+}
+.team-card h3 {
+  font:
+    400 25px "Space Grotesk",
+    sans-serif;
+  letter-spacing: -0.04em;
+  margin: 18px 0 7px;
+}
+.team-card p {
+  color: var(--acid);
+  margin: 0 0 16px;
+}
+.team-card small {
+  display: block;
+  line-height: 1.5;
+  text-transform: none;
+}
+.process-section {
+  display: grid;
+  gap: 8vw;
+  grid-template-columns: 1fr 2fr;
+}
+.process-grid {
+  grid-template-columns: repeat(4, 1fr);
+  margin-top: 54px;
+}
+.process-grid article {
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+.process-grid b {
+  color: var(--acid);
+  font:
+    11px "IBM Plex Mono",
+    monospace;
+}
+.process-grid h3 {
+  font:
+    400 25px "Space Grotesk",
+    sans-serif;
+  margin: 45px 0 12px;
+}
+.process-grid p {
+  color: var(--muted);
+  font:
+    14px/1.5 "Space Grotesk",
+    sans-serif;
+}
+.about-cta {
+  padding-bottom: 150px;
+  padding-top: 20px;
+}
+.cta-rule {
+  border-top: 1px solid var(--line);
+  margin-bottom: 80px;
+}
+.cta-content {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+.cta-content h2 {
+  font-size: clamp(48px, 8vw, 110px);
+  max-width: 1000px;
+}
+.cta-content p {
+  margin: 0 auto;
+}
+.cta-content .about-actions {
+  justify-content: center;
+}
+.about-page a:focus-visible,
+.about-page button:focus-visible {
+  outline: 2px solid var(--coral);
+  outline-offset: 5px;
+}
+.reveal {
+  animation: aboutReveal 0.7s ease both;
+}
+.about-visual {
+  animation-delay: 0.12s;
+}
+@keyframes aboutReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .about-card,
+  .team-card,
+  .about-button,
+  .reveal-on-scroll,
+  .site-header {
+    animation: none;
+    transition: none;
+  }
+}
+@media (max-width: 900px) {
+  .about-hero {
+    gap: 60px;
+    grid-template-columns: 1fr;
+    padding-top: 75px;
+  }
+  .about-visual {
+    max-width: 520px;
+    width: 100%;
+  }
+  .services-grid,
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .about-card {
+    min-height: 270px;
+  }
+  .philosophy-inner,
+  .process-section {
+    gap: 45px;
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .about-hero {
+    min-height: auto;
+    padding-bottom: 75px;
+  }
+  .about-hero-copy h1 {
+    margin-top: 34px;
+  }
+  .about-hero-copy p,
+  .section-heading p,
+  .about-cta p {
+    font-size: 16px;
+  }
+  .about-section {
+    padding-bottom: 85px;
+    padding-top: 85px;
+  }
+  .focus-layout,
+  .section-heading {
+    gap: 38px;
+    grid-template-columns: 1fr;
+  }
+  .stat-grid {
+    margin-top: 15px;
+  }
+  .stat-grid strong {
+    font-size: 38px;
+  }
+  .manifesto {
+    gap: 18px;
+    grid-template-columns: 1fr;
+    margin-top: 75px;
+  }
+  .manifesto div:nth-child(2),
+  .manifesto div:last-child {
+    text-align: left;
+  }
+  .services-grid,
+  .team-grid,
+  .principles-grid,
+  .process-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-card {
+    min-height: 245px;
+  }
+  .philosophy-band {
+    padding: 85px 0;
+  }
+  .principles-grid {
+    gap: 0;
+    margin-top: 42px;
+  }
+  .principles-grid h3 {
+    margin-top: 27px;
+  }
+  .process-grid {
+    gap: 0;
+    margin-top: 35px;
+  }
+  .process-grid article {
+    padding: 20px 0 26px;
+  }
+  .process-grid h3 {
+    margin: 25px 0 8px;
+  }
+  .about-cta {
+    padding-bottom: 95px;
+  }
+  .cta-rule {
+    margin-bottom: 60px;
+  }
+}
