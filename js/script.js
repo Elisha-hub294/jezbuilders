@@ -43,7 +43,6 @@ if (aboutPage) {
   } else {
     revealItems.forEach((item) => item.classList.add("is-visible"));
   }
-
 }
 
 if (siteHeader) {

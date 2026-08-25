@@ -32,7 +32,7 @@ button {
 }
 .site-shell {
   min-height: 100vh;
-  overflow: hidden;
+  overflow: clip;
 }
 .site-header {
   align-items: center;
@@ -41,9 +41,12 @@ button {
   height: 86px;
   justify-content: space-between;
   padding: 0 5vw;
+  position: sticky;
+  top: 0;
   transition:
     background 0.25s ease,
     border-color 0.25s ease;
+  z-index: 10;
 }
 .site-header.is-top {
   background: transparent;
