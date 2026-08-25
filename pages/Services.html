@@ -1,0 +1,68 @@
+
+  <!-- MAIN CONTAINER -->
+  <main class="container">
+    
+    <!-- HERO SECTION WITH CODE PREVIEW -->
+    <section class="hero-split">
+      <div>
+        <p class="tagline">● OUR CAPABILITIES / EST. 2019</p>
+        <h1 class="main-title">Engineering solutions for <span>digital growth.</span></h1>
+        <p class="description">We design, build, and deploy custom digital products engineered to help developer teams and tech brands win client trust.</p>
+        <button class="btn-start" onclick="handleStartProject()">DISCOVER OUR WORK ↗</button>
+      </div>
+
+      <!-- TERMINAL MOCKUP -->
+      <div class="terminal-card">
+        <div class="terminal-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="terminal-code">
+          <span class="code-key">const</span> project = {<br>
+          &nbsp;&nbsp;clarity: <span class="code-val-bool">true</span>,<br>
+          &nbsp;&nbsp;craft: <span class="code-val-str">'high'</span>,<br>
+          &nbsp;&nbsp;impact: <span class="code-val-str">'real'</span>,<br>
+          &nbsp;&nbsp;delivery: <span class="code-val-str">'on-time'</span><br>
+          };
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF / STATS BAR -->
+    <section class="stats-bar">
+      <div class="stat-item">
+        <h3>25+</h3>
+        <p>Projects Built</p>
+      </div>
+      <div class="stat-item">
+        <h3>100%</h3>
+        <p>Client Satisfaction</p>
+      </div>
+      <div class="stat-item">
+        <h3>99.9%</h3>
+        <p>Uptime Guaranteed</p>
+      </div>
+    </section>
+
+    <!-- FILTER BUTTONS -->
+    <div class="filter-section">
+      <button class="filter-btn active" onclick="filterServices('all', this)">ALL SERVICES</button>
+      <button class="filter-btn" onclick="filterServices('frontend', this)">FRONTEND</button>
+      <button class="filter-btn" onclick="filterServices('backend', this)">BACKEND</button>
+      <button class="filter-btn" onclick="filterServices('design', this)">UI/UX DESIGN</button>
+    </div>
+
+    <!-- SERVICES GRID -->
+    <div class="services-grid" id="servicesGrid">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- CTA FOOTER -->
+    <section class="cta-box">
+      <h2>Ready to turn your idea into software?</h2>
+      <p>Let’s build something sharp, fast, and scalable together.</p>
+      <button class="btn-start" onclick="handleStartProject()">START A PROJECT ↗</button>
+    </section>
+
+  </main>
