@@ -2,7 +2,8 @@
   --muted: rgba(241, 240, 233, 0.66);
 }
 body.has-scroll-reveal .site-header {
-  background: rgba(24, 32, 29, 0.92);
+  background: transparent;
+  border-bottom-color: transparent;
   position: sticky;
   top: 0;
   transition:
@@ -13,6 +14,10 @@ body.has-scroll-reveal .site-header {
 body.has-scroll-reveal .site-header.is-scrolled {
   background: rgba(24, 32, 29, 0.98);
   border-color: rgba(215, 243, 107, 0.35);
+}
+body.has-scroll-reveal .site-header.is-top {
+  background: transparent;
+  border-bottom-color: transparent;
 }
 .has-scroll-reveal .reveal-on-scroll {
   opacity: 0;
@@ -41,15 +46,42 @@ body.has-scroll-reveal .site-header.is-scrolled {
   display: grid;
   gap: 8vw;
   grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
-  min-height: 680px;
-  padding-bottom: 90px;
-  padding-top: 90px;
+  min-height: 92vh;
+  overflow: hidden;
+  padding-bottom: 100px;
+  padding-top: 100px;
+  position: relative;
+}
+.about-hero::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 80px 80px;
+  content: "";
+  inset: 0;
+  mask-image: linear-gradient(to bottom, black, transparent);
+  pointer-events: none;
+  position: absolute;
+}
+.about-hero::after {
+  background: rgba(255, 90, 54, 0.12);
+  border-radius: 50%;
+  content: "";
+  filter: blur(100px);
+  height: 550px;
+  pointer-events: none;
+  position: absolute;
+  right: 8%;
+  top: 10%;
+  width: 550px;
 }
 .about-hero-copy h1 {
-  font-size: clamp(52px, 7vw, 100px);
-  line-height: 0.88;
+  font-size: clamp(4rem, 7.5vw, 8rem);
+  line-height: 0.87;
   margin: 42px 0 32px;
-  max-width: 850px;
+  max-width: 750px;
+  position: relative;
+  z-index: 1;
 }
 .about-hero-copy p,
 .section-heading p,
@@ -93,7 +125,9 @@ body.has-scroll-reveal .site-header.is-scrolled {
 .about-visual {
   min-height: 410px;
   padding: 25px 0 0 25px;
+  perspective: 1200px;
   position: relative;
+  z-index: 1;
 }
 .visual-caption,
 .visual-tag,
@@ -113,12 +147,54 @@ body.has-scroll-reveal .site-header.is-scrolled {
   top: 0;
 }
 .visual-frame {
+  animation: aboutFrameFloat 6s ease-in-out infinite;
   background: #27322d;
   border: 1px solid rgba(241, 240, 233, 0.25);
   box-shadow: 14px 14px 0 var(--coral);
-  min-height: 330px;
-  padding: 22px;
-  transform: rotate(3deg);
+  margin: 0;
+  min-height: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  aspect-ratio: 1.08;
+  transform: rotateY(-8deg) rotateX(4deg) rotateZ(1deg);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.about-visual:hover .visual-frame {
+  transform: rotateY(0) rotateX(0) rotateZ(0) translateY(-10px);
+}
+.visual-frame::after {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(24, 32, 29, 0.92) 0%,
+      rgba(24, 32, 29, 0.48) 42%,
+      rgba(24, 32, 29, 0.04) 82%
+    ),
+    linear-gradient(0deg, rgba(24, 32, 29, 0.55), transparent 35%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+.about-hero-image {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+.visual-overlay-label {
+  bottom: 22px;
+  color: var(--paper);
+  font:
+    10px "IBM Plex Mono",
+    monospace;
+  left: 22px;
+  letter-spacing: 0.07em;
+  position: absolute;
+  text-transform: uppercase;
+  z-index: 1;
 }
 .visual-top {
   border-bottom: 1px solid rgba(241, 240, 233, 0.2);
@@ -436,6 +512,15 @@ body.has-scroll-reveal .site-header.is-scrolled {
   padding-bottom: 150px;
   padding-top: 20px;
 }
+@keyframes aboutFrameFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -15px;
+  }
+}
 .cta-rule {
   border-top: 1px solid var(--line);
   margin-bottom: 80px;
@@ -485,6 +570,10 @@ body.has-scroll-reveal .site-header.is-scrolled {
   .site-header {
     animation: none;
     transition: none;
+  }
+  .about-visual,
+  .visual-frame {
+    animation: none;
   }
 }
 @media (max-width: 900px) {

@@ -1,5 +1,6 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const navigation = document.querySelector(".nav-links");
+const siteHeader = document.querySelector(".site-header");
 
 if (menuToggle && navigation) {
   menuToggle.addEventListener("click", () => {
@@ -43,9 +44,14 @@ if (aboutPage) {
     revealItems.forEach((item) => item.classList.add("is-visible"));
   }
 
-  const siteHeader = document.querySelector(".site-header");
-  const updateHeader = () =>
-    siteHeader?.classList.toggle("is-scrolled", window.scrollY > 24);
+}
+
+if (siteHeader) {
+  const updateHeader = () => {
+    const isScrolled = window.scrollY > 24;
+    siteHeader.classList.toggle("is-scrolled", isScrolled);
+    siteHeader.classList.toggle("is-top", !isScrolled);
+  };
   updateHeader();
   window.addEventListener("scroll", updateHeader, { passive: true });
 }

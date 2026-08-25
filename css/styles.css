@@ -41,6 +41,17 @@ button {
   height: 86px;
   justify-content: space-between;
   padding: 0 5vw;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+.site-header.is-top {
+  background: transparent;
+  border-bottom-color: transparent;
+}
+.site-header.is-scrolled {
+  background: rgba(24, 32, 29, 0.96);
+  border-bottom-color: var(--line);
 }
 .logo {
   align-items: center;
