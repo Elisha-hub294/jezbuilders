@@ -38,56 +38,43 @@
           <div class="page-intro compact">
             <div class="eyebrow">
               <span class="signal-dot"></span> Capabilities
-            </div>
-            <h1>Built for the<br /><em>next move.</em></h1>
-          </div>
-          <div class="service-list">
-            <article class="service-item">
-              <span class="item-number">01</span>
-              <h2>Product engineering</h2>
-              <p>
-                From first prototype to resilient production systems, we build
-                software that is ready for real users.
-              </p>
-              <span class="item-arrow">â†—</span>
-            </article>
-            <article class="service-item">
-              <span class="item-number">02</span>
-              <h2>Web experiences</h2>
-              <p>
-                Fast, expressive websites and platforms that make complicated
-                products feel remarkably simple.
-              </p>
-              <span class="item-arrow">â†—</span>
-            </article>
-            <article class="service-item">
-              <span class="item-number">03</span>
-              <h2>Technical direction</h2>
-              <p>
-                A clear path through architecture, tooling, and delivery when
-                your team needs an experienced second brain.
-              </p>
-              <span class="item-arrow">â†—</span>
-            </article>
-          </div>
-          <div class="service-footer">
-            <p>
-              Have something in mind? Even if it is still a little fuzzy, we
-              would like to hear about it.
-            </p>
-            <a class="arrow-link" href="contact.html"
-              >Start a conversation <span>â†—</span></a
-            >
-          </div>
-        </section>
-      </main>
-      <footer>
-        <a class="logo" href="../index.html" aria-label="Go to JEZBuilders home"
-          ><span>JZ</span><strong>JEZ<br />BUILDERS</strong></a
-        ><span>Â© 2024 JEZBuilders. Built with intent.</span
-        ><span>Based everywhere / Working worldwide</span>
-      </footer>
+      </div>
+    </section>
+
+    <!-- PROOF / STATS BAR -->
+    <section class="stats-bar">
+      <div class="stat-item">
+        <h3>25+</h3>
+        <p>Projects Built</p>
+      </div>
+      <div class="stat-item">
+        <h3>100%</h3>
+        <p>Client Satisfaction</p>
+      </div>
+      <div class="stat-item">
+        <h3>99.9%</h3>
+        <p>Uptime Guaranteed</p>
+      </div>
+    </section>
+
+    <!-- FILTER BUTTONS -->
+    <div class="filter-section">
+      <button class="filter-btn active" onclick="filterServices('all', this)">ALL SERVICES</button>
+      <button class="filter-btn" onclick="filterServices('frontend', this)">FRONTEND</button>
+      <button class="filter-btn" onclick="filterServices('backend', this)">BACKEND</button>
+      <button class="filter-btn" onclick="filterServices('design', this)">UI/UX DESIGN</button>
     </div>
-    <script src="../js/script.js"></script>
-  </body>
-</html>
+
+    <!-- SERVICES GRID -->
+    <div class="services-grid" id="servicesGrid">
+      <!-- Injected via JavaScript -->
+    </div>
+
+    <!-- CTA FOOTER -->
+    <section class="cta-box">
+      <h2>Ready to turn your idea into software?</h2>
+      <p>Let’s build something sharp, fast, and scalable together.</p>
+      <button class="btn-start" onclick="handleStartProject()">START A PROJECT ↗</button>
+    </section>
+
+  </main>
