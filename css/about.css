@@ -279,6 +279,50 @@ body.has-scroll-reveal .site-header.is-top {
   position: absolute;
   right: -8px;
 }
+.hero-chip {
+  align-items: center;
+  background: rgba(24, 32, 29, 0.9);
+  border: 1px solid rgba(241, 240, 233, 0.3);
+  box-shadow: 5px 5px 0 rgba(255, 118, 94, 0.85);
+  color: var(--paper);
+  display: flex;
+  font:
+    10px "IBM Plex Mono",
+    monospace;
+  gap: 8px;
+  letter-spacing: 0.06em;
+  padding: 10px 12px;
+  position: absolute;
+  text-transform: uppercase;
+  z-index: 2;
+}
+.hero-chip-status {
+  animation: heroChipFloat 5s ease-in-out infinite;
+  right: -18px;
+  top: 74px;
+}
+.hero-chip-people {
+  animation: heroChipFloat 5s 1.4s ease-in-out infinite;
+  bottom: 42px;
+  left: -12px;
+}
+.chip-dot {
+  background: var(--acid);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(215, 243, 107, 0.12);
+  display: inline-block;
+  height: 7px;
+  width: 7px;
+}
+@keyframes heroChipFloat {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -8px;
+  }
+}
 .about-section {
   padding-bottom: 125px;
   padding-top: 125px;
@@ -292,8 +336,42 @@ body.has-scroll-reveal .site-header.is-top {
 .focus-layout {
   margin-top: 10px;
 }
-.stat-grid {
+@media (min-width: 901px) {
+  body.has-scroll-reveal .focus-section .focus-copy,
+  body.has-scroll-reveal .focus-section .focus-aside {
+    opacity: 0;
+    transition:
+      opacity 0.95s ease 0.12s,
+      transform 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+  }
+  body.has-scroll-reveal .focus-section .focus-copy {
+    transform: translateX(-72px);
+  }
+  body.has-scroll-reveal .focus-section .focus-aside {
+    transform: translateX(72px);
+  }
+  body.has-scroll-reveal .focus-section .focus-aside {
+    transition-delay: 0.26s;
+  }
+  body.has-scroll-reveal .focus-section.is-visible .focus-copy,
+  body.has-scroll-reveal .focus-section.is-visible .focus-aside {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.focus-aside {
   align-self: end;
+}
+.focus-team-image {
+  aspect-ratio: 1.55;
+  border: 1px solid rgba(241, 240, 233, 0.2);
+  display: block;
+  height: auto;
+  margin-bottom: 28px;
+  object-fit: cover;
+  width: 100%;
+}
+.stat-grid {
   border-top: 1px solid var(--line);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -599,11 +677,18 @@ body.has-scroll-reveal .site-header.is-top {
   }
   .about-visual,
   .visual-frame,
+  .hero-chip,
   .typing-cursor {
     animation: none;
   }
   .typing-cursor {
     opacity: 0;
+  }
+  .focus-section .focus-copy,
+  .focus-section .focus-aside {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 @media (max-width: 900px) {
@@ -636,6 +721,9 @@ body.has-scroll-reveal .site-header.is-top {
   }
   .about-hero-copy h1 {
     margin-top: 28px;
+  }
+  .hero-chip {
+    display: none;
   }
   .about-hero-copy p,
   .section-heading p,

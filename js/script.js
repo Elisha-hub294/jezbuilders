@@ -126,8 +126,8 @@ if (aboutPage) {
         }, waitTime);
       };
 
-      typeMessage(messages[messageIndex], rotateMessage);
       reserveHeadlineHeight();
+      typeMessage(messages[messageIndex], rotateMessage);
     }
   }
 
