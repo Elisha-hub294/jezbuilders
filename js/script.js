@@ -2,6 +2,10 @@ const menuToggle = document.querySelector(".menu-toggle");
 const navigation = document.querySelector(".nav-links");
 const siteHeader = document.querySelector(".site-header");
 
+document.addEventListener("dragstart", (event) => {
+  event.preventDefault();
+});
+
 if (menuToggle && navigation) {
   menuToggle.addEventListener("click", () => {
     const isOpen = navigation.classList.toggle("open");
@@ -34,6 +38,23 @@ if (aboutPage) {
         { prefix: "Good software starts with ", emphasis: "clarity." },
         { prefix: "We turn ambition into ", emphasis: "momentum." },
       ];
+      const reserveHeadlineHeight = () => {
+        const originalPrefix = prefix.textContent;
+        const originalEmphasis = emphasis.textContent;
+        let maxHeight = 0;
+
+        typingHeadline.style.height = "auto";
+        messages.forEach((message) => {
+          prefix.textContent = message.prefix;
+          emphasis.textContent = message.emphasis;
+          maxHeight = Math.max(maxHeight, typingHeadline.scrollHeight);
+        });
+
+        prefix.textContent = originalPrefix;
+        emphasis.textContent = originalEmphasis;
+        typingHeadline.style.minHeight = `${maxHeight}px`;
+        typingHeadline.style.height = `${maxHeight}px`;
+      };
       let messageIndex = 0;
 
       const updateAccessibleLabel = (message) => {
@@ -106,6 +127,7 @@ if (aboutPage) {
       };
 
       typeMessage(messages[messageIndex], rotateMessage);
+      reserveHeadlineHeight();
     }
   }
 

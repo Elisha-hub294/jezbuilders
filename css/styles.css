@@ -27,6 +27,12 @@ button {
   border: 0;
   cursor: pointer;
 }
+a,
+button,
+img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
 [hidden] {
   display: none !important;
 }
