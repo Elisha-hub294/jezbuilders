@@ -128,9 +128,57 @@ img {
   padding-right: 10vw;
 }
 .hero {
-  min-height: 650px;
+  min-height: 80vh;
   padding-top: 100px;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: 0;
+}
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(24, 32, 29, 0.7), rgba(24, 32, 29, 0.9));
+  z-index: 1;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.btn-primary {
+  background: var(--acid);
+  color: var(--ink) !important;
+  font-weight: 700;
+  border-radius: 40px;
+  padding: 16px 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(215, 243, 107, 0.4);
 }
 .eyebrow,
 .section-label,
@@ -166,11 +214,12 @@ p {
 }
 h1 {
   font:
-    400 clamp(56px, 9vw, 132px)/0.88 "Space Grotesk",
+    400 clamp(48px, 8vw, 110px)/1.0 "Space Grotesk",
     sans-serif;
   letter-spacing: -0.05em;
-  margin: 54px 0 38px;
-  max-width: 850px;
+  margin: 20px 0 38px;
+  max-width: 900px;
+  text-shadow: 0 4px 15px rgba(0,0,0,0.4);
 }
 h1 em,
 h2 span {
@@ -178,16 +227,19 @@ h2 span {
   font-style: normal;
 }
 .hero-bottom {
-  align-items: end;
   display: flex;
-  gap: 52px;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 }
 .hero-copy {
-  max-width: 290px;
+  max-width: 600px;
   text-transform: none;
   letter-spacing: 0;
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 18px;
+  line-height: 1.6;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  color: rgba(255, 255, 255, 0.95);
 }
 .arrow-link {
   background: none;
@@ -202,22 +254,7 @@ h2 span {
   text-transform: uppercase;
 }
 .hero-mark {
-  color: var(--coral);
-  font-size: 76px;
-  position: absolute;
-  right: 10vw;
-  top: 180px;
-  transform: rotate(15deg);
-}
-.hero-mark span {
-  display: block;
-  line-height: 0.52;
-}
-.hero-mark span:nth-child(2) {
-  margin-left: 52px;
-}
-.hero-mark span:nth-child(3) {
-  margin-left: 8px;
+  display: none;
 }
 .ticker {
   align-items: center;
@@ -697,7 +734,7 @@ textarea::placeholder {
     transform: scale(0.55) rotate(15deg);
   }
   .hero-bottom {
-    align-items: start;
+    align-items: center;
     flex-direction: column;
     gap: 25px;
   }
