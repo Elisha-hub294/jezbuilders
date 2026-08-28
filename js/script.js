@@ -162,6 +162,60 @@ if (aboutPage) {
   }
 }
 
+const homePage = document.querySelector(".home-page");
+if (homePage) {
+  const revealItems = homePage.querySelectorAll(
+    ".capability-card, .showcase-card, .process-step-card, .reason-card, .testimonial-card, .faq-item, .home-cta, .intro-content"
+  );
+
+  revealItems.forEach((item, index) => {
+    item.classList.add("reveal-on-scroll");
+    item.style.setProperty("--reveal-delay", `${(index % 4) * 80}ms`);
+  });
+
+  if (
+    "IntersectionObserver" in window &&
+    !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  ) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { rootMargin: "0px 0px -10%" }
+    );
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+  }
+
+  // FAQ Accordion Interaction
+  const faqQuestions = homePage.querySelectorAll(".faq-question");
+  faqQuestions.forEach((button) => {
+    button.addEventListener("click", () => {
+      const faqItem = button.closest(".faq-item");
+      const isOpen = faqItem.classList.contains("is-open");
+
+      // Close all other items for clean single accordion state
+      homePage.querySelectorAll(".faq-item").forEach((item) => {
+        item.classList.remove("is-open");
+        const btn = item.querySelector(".faq-question");
+        if (btn) btn.setAttribute("aria-expanded", "false");
+      });
+
+      if (!isOpen) {
+        faqItem.classList.add("is-open");
+        button.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+}
+
 if (siteHeader) {
   const updateHeader = () => {
     const isScrolled = window.scrollY > 24;
@@ -181,3 +235,4 @@ if (form) {
     event.target.reset();
   });
 }
+
