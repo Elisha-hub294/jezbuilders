@@ -1,70 +1,79 @@
-    const servicesData = [
-      {
-        id: '01',
-        category: 'frontend',
-        title: 'Custom Web Development',
-        description: 'Scalable, high-performance web applications built with modern JavaScript frameworks. Fast load times and pixel-perfect design.',
-        tags: ['React', 'JavaScript', 'HTML5/CSS3', 'REST APIs']
-      },
-      {
-        id: '02',
-        category: 'design',
-        title: 'UI/UX & Product Design',
-        description: 'Intuitive, modern visual interfaces crafted to convert visitors into clients. High-fidelity prototypes and full brand design systems.',
-        tags: ['Figma', 'Wireframing', 'Prototyping', 'Design Systems']
-      },
-      {
-        id: '03',
-        category: 'backend',
-        title: 'Database & Backend Systems',
-        description: 'Robust server architectures, custom API development, and secure database designs engineered for reliability and high load.',
-        tags: ['Node.js', 'SQL', 'PostgreSQL', 'Cloud Hosting']
-      },
-      {
-        id: '04',
-        category: 'frontend',
-        title: 'Performance & Optimization',
-        description: 'Code refactoring, speed tuning, SEO improvements, and security audits to keep your platform operating at peak efficiency.',
-        tags: ['Performance', 'SEO', 'Security', 'Code Audit']
-      }
-    ];
+    // Initialize Icons
+    Lucide.createIcons();
 
-    function renderServices(data) {
-      const grid = document.getElementById('servicesGrid');
-      grid.innerHTML = data.map(service => `
-        <div class="service-card">
-          <div>
-            <div class="card-top">
-              <span class="service-id">${service.id}</span>
-              <span class="arrow">↗</span>
-            </div>
-            <h3 class="service-title">${service.title}</h3>
-            <p class="service-desc">${service.description}</p>
-          </div>
-          <div class="tags">
-            ${service.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-          </div>
-        </div>
-      `).join('');
+    // Scroll Reveal Observer
+    Const observer = new IntersectionObserver((entries) => {
+      Entries.forEach(entry => {
+        If (entry.isIntersecting) entry.target.classList.add(‘active’);
+      });
+    }, { threshold: 0.1 });
+
+    Document.querySelectorAll(‘.reveal’).forEach(el => observer.observe(el));
+
+    // Code Tab Switcher
+    Function switchCodeTab(lang) {
+      Document.querySelectorAll(‘.code-tab’).forEach(t => t.classList.remove(‘active’));
+      Document.querySelectorAll(‘.code-snippet’).forEach(s => s.classList.remove(‘active’));
+      
+      Event.target.classList.add(‘active’);
+      Document.getElementById(‘code-‘ + lang).classList.add(‘active’);
     }
 
-    function filterServices(category, btnElement) {
-      // Toggle button active styling
-      document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-      btnElement.classList.add('active');
-
-      // Filter grid
-      if (category === 'all') {
-        renderServices(servicesData);
-      } else {
-        const filtered = servicesData.filter(s => s.category === category);
-        renderServices(filtered);
-      }
+    // Copy Code Action
+    Function copyCode() {
+      Const activeSnippet = document.querySelector(‘.code-snippet.active’).innerText;
+      Navigator.clipboard.writeText(activeSnippet);
+      Alert(‘Code copied to clipboard!’);
     }
 
-    function handleStartProject() {
-      alert("Redirecting to project intake form...");
+    // Filter Services
+    Function filterServices(category) {
+      Document.querySelectorAll(‘.tab-btn’).forEach(tab => tab.classList.remove(‘active’));
+      Event.target.classList.add(‘active’);
+
+      Document.querySelectorAll(‘.service-card’).forEach(card => {
+        If (category === ‘all’ || card.dataset.category === category) {
+          Card.style.display = ‘flex’;
+        } else {
+          Card.style.display = ‘none’;
+        }
+      });
     }
 
-    // Initialize layout
-    document.addEventListener('DOMContentLoaded', () => renderServices(servicesData));
+    // Architecture Configurator Logic
+    Let selectedTimes = { fe: 10, be: 12, db: 7 };
+
+    Function selectOpt(btn, group, val, days) {
+      Btn.parentElement.querySelectorAll(‘.opt-btn’).forEach(b => b.classList.remove(‘selected’));
+      Btn.classList.add(‘selected’);
+
+      Document.getElementById(‘spec-‘ + group).innerText = val;
+      selectedTimes[group] = days;
+
+      const totalDays = selectedTimes.fe + selectedTimes.be + selectedTimes.db;
+      document.getElementById(‘spec-time’).innerText = totalDays + “ Days”;
+    }
+
+    // Drawer Control
+    Function openDrawer(title, body) {
+      Document.getElementById(‘drawerTitle’).innerText = title;
+      Document.getElementById(‘drawerBody’).innerText = body;
+      Document.getElementById(‘drawerModal’).classList.add(‘active’);
+    }
+
+    Function closeDrawer() {
+      Document.getElementById(‘drawerModal’).classList.remove(‘active’);
+    }
+
+    // FAQ Accordion Toggle
+    Document.querySelectorAll(‘.faq-question’).forEach(button => {
+      Button.addEventListener(‘click’, () => {
+        Button.parentElement.classList.toggle(‘active’);
+      });
+    });
+
+    // Smooth Scroll Helper
+    Function scrollToSection(id) {
+      Document.getElementById(id).scrollIntoView({ behavior: ‘smooth’ });
+    }
+
