@@ -1,82 +1,512 @@
-<!-- MAIN CONTAINER -->
-<main class="container">
-  <!-- HERO SECTION WITH CODE PREVIEW -->
-  <section class="hero-split">
-    <div>
-      <p class="tagline">● OUR CAPABILITIES / EST. 2019</p>
-      <h1 class="main-title">
-        Engineering solutions for <span>digital growth.</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JEZ BUILDERS | Services & Systems Engineering</title>
+  
+  <!-- Google Fonts: Space Grotesk & Fira Code -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheets" href="services.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+</head>
+<body>
+
+  <!-- MAIN NAVIGATION BAR -->
+  <nav>
+    <div class="brand">
+      <div class="logo-circle">JZ</div>
+      <div class="brand-text">
+        JEZ BUILDERS
+        <span>INDEPENDENT DIGITAL BUILDERS</span>
+      </div>
+    </div>
+    
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services" class="active">Services</a>
+      <a href="#projects">Projects</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">FAQ</a>
+    </div>
+ <div style="display: flex; gap: 1rem; align-items: center;">
+      <button class="btn-outline">
+        Start a Project <i data-lucide="arrow-up-right"></i>
+      </button>
+      <button class="mobile-menu-btn" onclick="toggleMobileNav()"><i data-lucide="menu"></i></button>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero" id="about">
+    <div class="hero-left reveal">
+      <div class="tagline">
+        <span class="tagline-dot"></span> OUR CAPABILITIES / EST. 2019
+      </div>
+      <h1 class="hero-title">
+        Engineering solutions for <span class="highlight">digital growth.</span>
       </h1>
-      <p class="description">
-        We design, build, and deploy custom digital products engineered to help
-        developer teams and tech brands win client trust.
+      <p class="hero-description">
+        We design, build, and deploy custom digital products engineered to help developer teams, startups, and tech brands win client trust.
       </p>
-      <button class="btn-start" onclick="handleStartProject()">
-        DISCOVER OUR WORK ↗
+      <button class="btn-outline" onclick="scrollToSection('services')">
+        Discover Our Work <i data-lucide="arrow-down-right"></i>
       </button>
     </div>
 
-    <!-- TERMINAL MOCKUP -->
-    <div class="terminal-card">
-      <div class="terminal-dots">
-        <span class="dot red"></span>
-        <span class="dot yellow"></span>
-        <span class="dot green"></span>
-      </div>
-      <div class="terminal-code">
-        <span class="code-key">const</span> project = {<br />
-        &nbsp;&nbsp;clarity: <span class="code-val-bool">true</span>,<br />
-        &nbsp;&nbsp;craft: <span class="code-val-str">'high'</span>,<br />
-        &nbsp;&nbsp;impact: <span class="code-val-str">'real'</span>,<br />
-        &nbsp;&nbsp;delivery: <span class="code-val-str">'on-time'</span><br />
-        };
+    <div class="hero-right reveal">
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+
+          <!-- CODE LANGUAGE TABS -->
+          <div class="terminal-tabs">
+            <button class="code-tab active" onclick="switchCodeTab('ts')">TypeScript</button>
+            <button class="code-tab" onclick="switchCodeTab('cs')">C#</button>
+            <button class="code-tab" onclick="switchCodeTab('py')">Python</button>
+          </div>
+
+          <button class="copy-code-btn" onclick="copyCode()"><i data-lucide="copy"></i> Copy</button>
+        </div>
+
+        <div class="terminal-body">
+          <div class="code-snippet active" id="code-ts">
+            <p><span class="code-keyword">const</span> <span class="code-var">project</span> = {</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">clarity:</span> <span class="code-val">true</span>,</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">craft:</span> <span class="code-val">'high'</span>,</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">impact:</span> <span class="code-val">'real'</span>,</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">delivery:</span> <span class="code-val">'on-time'</span></p>
+            <p>};</p>
+          </div>
+
+          <div class="code-snippet" id="code-cs">
+            <p><span class="code-keyword">var</span> <span class="code-var">project</span> = <span class="code-keyword">new</span> ServiceSpec {</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">Clarity</span> = <span class="code-val">true</span>,</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">Craft</span> = <span class="code-val">"High"</span>,</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">Status</span> = <span class="code-val">"Production-Ready"</span></p>
+            <p>};</p>
+          </div>
+
+          <div class="code-snippet" id="code-py">
+            <p><span class="code-var">project</span> = {</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">"clarity"</span>: <span class="code-val">True</span>,</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">"architecture"</span>: <span class="code-val">"Modular"</span>,</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">"performance"</span>: <span class="code-val">"Optimized"</span></p>
+            <p>}</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
-
-  <!-- PROOF / STATS BAR -->
-  <section class="stats-bar">
+   <!-- STATS BAR -->
+  <section class="stats-bar reveal">
     <div class="stat-item">
-      <h3>25+</h3>
-      <p>Projects Built</p>
+      <h3>5+</h3>
+      <p>Years Experience</p>
     </div>
     <div class="stat-item">
-      <h3>100%</h3>
-      <p>Client Satisfaction</p>
+      <h3>40+</h3>
+      <p>Shipped Products</p>
     </div>
     <div class="stat-item">
       <h3>99.9%</h3>
       <p>Uptime Guaranteed</p>
     </div>
+    <div class="stat-item">
+      <h3>100%</h3>
+      <p>Client Ownership</p>
+    </div>
   </section>
 
-  <!-- FILTER BUTTONS -->
-  <div class="filter-section">
-    <button class="filter-btn active" onclick="filterServices('all', this)">
-      ALL SERVICES
-    </button>
-    <button class="filter-btn" onclick="filterServices('frontend', this)">
-      FRONTEND
-    </button>
-    <button class="filter-btn" onclick="filterServices('backend', this)">
-      BACKEND
-    </button>
-    <button class="filter-btn" onclick="filterServices('design', this)">
-      UI/UX DESIGN
-    </button>
-  </div>
+  <!-- EXPANDED SERVICES SECTION -->
+  <section class="services-section" id="services">
+    <div class="section-header reveal">
+      <div>
+        <div class="tagline"><span class="tagline-dot"></span> WHAT WE DO</div>
+        <h2 class="section-title">End-to-End Technical Capabilities</h2>
+      </div>
 
-  <!-- SERVICES GRID -->
-  <div class="services-grid" id="servicesGrid">
-    <!-- Injected via JavaScript -->
-  </div>
+      <div class="filter-tabs">
+        <button class="tab-btn active" onclick="filterServices('all')">All</button>
+        <button class="tab-btn" onclick="filterServices('engineering')">Frontend</button>
+        <button class="tab-btn" onclick="filterServices('backend')">Backend & DB</button>
+        <button class="tab-btn" onclick="filterServices('design')">Design & Cloud</button>
+      </div>
+    </div>
 
-  <!-- CTA FOOTER -->
-  <section class="cta-box">
-    <h2>Ready to turn your idea into software?</h2>
-    <p>Let’s build something sharp, fast, and scalable together.</p>
-    <button class="btn-start" onclick="handleStartProject()">
-      START A PROJECT ↗
-    </button>
+    <div class="services-grid">
+
+      <!-- Service Card 1 -->
+      <div class="service-card reveal" data-category="engineering">
+        <div>
+          <div class="service-icon-wrapper">
+            <i data-lucide="code"></i>
+          </div>
+          <h3 class="service-title">Full-Stack Web Engineering</h3>
+          <p class="service-desc">
+            Custom web applications built for speed, accessibility, and high performance. Scalable client-side architectures.
+          </p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> React / Next.js Development</li>
+            <li><i data-lucide="check"></i> Responsive & Interactive UI</li>
+            <li><i data-lucide="check"></i> Speed & SEO Optimization</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <div class="tech-stack-pills">
+            <span class="tech-pill">React</span>
+            <span class="tech-pill">TypeScript</span>
+            <span class="tech-pill">Next.js</span>
+          </div>
+          <span class="link-arrow" onclick="openDrawer('Full-Stack Web Engineering', 'We construct single page applications and SSR web portals built on modular component trees, integrated state management, and optimized asset pipelines.')">Details <i data-lucide="arrow-up-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Service Card 2: BACKEND DEVELOPMENT -->
+      <div class="service-card reveal" data-category="backend">
+        <div>
+          <div class="service-icon-wrapper">
+            <i data-lucide="server"></i>
+          </div>
+          <h3 class="service-title">Backend & API Architecture</h3>
+          <p class="service-desc">
+            Robust backend systems engineered to handle complex business logic, authentication, and high-concurrency API demands.
+          </p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> RESTful & GraphQL API Engineering</li>
+            <li><i data-lucide="check"></i> C# / .NET & Node.js Microservices</li>
+            <li><i data-lucide="check"></i> Python Automated Data Pipelines</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <div class="tech-stack-pills">
+            <span class="tech-pill">C#</span>
+            <span class="tech-pill">Python</span>
+            <span class="tech-pill">Node.js</span>
+          </div>
+          <span class="link-arrow" onclick="openDrawer('Backend & API Architecture', 'Our server solutions prioritize strict security protocols, object-relational mapping, route caching, and enterprise middleware.')">Details <i data-lucide="arrow-up-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Service Card 3: DATABASE DESIGN -->
+      <div class="service-card reveal" data-category="backend">
+        <div>
+          <div class="service-icon-wrapper">
+            <i data-lucide="database"></i>
+          </div>
+          <h3 class="service-title">Database Design & Tuning</h3>
+          <p class="service-desc">
+            Reliable relational database structures, query execution tuning, and automated data migration pipelines.
+          </p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> SQL Server & PostgreSQL Schemas</li>
+            <li><i data-lucide="check"></i> Index Optimization & Query Tuning</li>
+            <li><i data-lucide="check"></i> ORM Configuration (Entity Framework / Prisma)</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <div class="tech-stack-pills">
+            <span class="tech-pill">SQL Server</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Prisma</span>
+          </div>
+          <span class="link-arrow" onclick="openDrawer('Database Design & Tuning', 'Designing relational structures with tight integrity constraints, stored procedures, and high-volume indexing strategies.')">Details <i data-lucide="arrow-up-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Service Card 4: UI/UX DESIGN -->
+      <div class="service-card reveal" data-category="design">
+        <div>
+          <div class="service-icon-wrapper">
+            <i data-lucide="layout"></i>
+          </div>
+          <h3 class="service-title">UI/UX & Design Systems</h3>
+          <p class="service-desc">
+            Design-first prototypes, clean typography layout systems, and high-fidelity wireframes that look sharp on any device.
+          </p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Figma Interactive Prototyping</li>
+            <li><i data-lucide="check"></i> Custom Design Tokens & UI Kits</li>
+            <li><i data-lucide="check"></i> User Journey Mapping</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <div class="tech-stack-pills">
+            <span class="tech-pill">Figma</span>
+            <span class="tech-pill">Tailwind</span>
+            <span class="tech-pill">CSS3</span>
+          </div>
+          <span class="link-arrow" onclick="openDrawer('UI/UX & Design Systems', 'We design responsive UI libraries with dark theme toggles, grid layouts, and standardized design token exports.')">Details <i data-lucide="arrow-up-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Service Card 5: MOBILE DEVELOPMENT -->
+      <div class="service-card reveal" data-category="engineering">
+        <div>
+          <div class="service-icon-wrapper">
+            <i data-lucide="smartphone"></i>
+          </div>
+          <h3 class="service-title">Cross-Platform Mobile Apps</h3>
+          <p class="service-desc">
+            Responsive mobile applications engineered for high performance on both iOS and Android platforms.
+          </p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> React Native & Expo Development</li>
+            <li><i data-lucide="check"></i> Offline-first Sync Capabilities</li>
+            <li><i data-lucide="check"></i> Native Hardware Integration</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <div class="tech-stack-pills">
+            <span class="tech-pill">React Native</span>
+            <span class="tech-pill">Expo</span>
+          </div>
+          <span class="link-arrow" onclick="openDrawer('Cross-Platform Mobile Apps', 'Single codebase execution for iOS and Android with smooth touch gesture responsiveness and persistent local state.')">Details <i data-lucide="arrow-up-right"></i></span>
+        </div>
+      </div>
+
+      <!-- Service Card 6: DEVOPS & DEPLOYMENT -->
+      <div class="service-card reveal" data-category="design">
+        <div>
+          <div class="service-icon-wrapper">
+            <i data-lucide="cloud"></i>
+          </div>
+          <h3 class="service-title">DevOps & Cloud Deployment</h3>
+          <p class="service-desc">
+            Streamlined CI/CD pipelines, containerized deployments, and cloud infrastructure management for uninterrupted delivery.
+          </p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Docker Containerization</li>
+            <li><i data-lucide="check"></i> GitHub Actions CI/CD</li>
+            <li><i data-lucide="check"></i> Vercel, AWS & Cloud Hosting</li>
+          </ul>
+        </div>
+        <div class="card-footer">
+          <div class="tech-stack-pills">
+            <span class="tech-pill">Docker</span>
+            <span class="tech-pill">GitHub</span>
+            <span class="tech-pill">AWS</span>
+          </div>
+          <span class="link-arrow" onclick="openDrawer('DevOps & Cloud Deployment', 'Automating deployments through continuous integration scripts, environment secrets management, and automated test runs.')">Details <i data-lucide="arrow-up-right"></i></span>
+        </div>
+      </div>
+
+    </div>
   </section>
-</main>
+  <!-- INTERACTIVE ARCHITECTURE ESTIMATOR -->
+  <section class="builder-section reveal">
+    <div class="tagline"><span class="tagline-dot"></span> SYSTEM CONFIGURATOR</div>
+    <h2 class="section-title">Configure Your Architecture</h2>
+
+    <div class="builder-grid">
+      <div>
+        <div class="option-group">
+          <span class="option-label">1. FRONTEND STACK</span>
+          <div class="option-buttons">
+            <button class="opt-btn selected" onclick="selectOpt(this, 'fe', 'React / Next.js', 10)">React / Next.js</button>
+            <button class="opt-btn" onclick="selectOpt(this, 'fe', 'Vanilla HTML/JS', 5)">Vanilla HTML/JS</button>
+          </div>
+        </div>
+
+        <div class="option-group">
+          <span class="option-label">2. BACKEND ENGINE</span>
+          <div class="option-buttons">
+            <button class="opt-btn selected" onclick="selectOpt(this, 'be', 'C# / .NET Core', 12)">C# / .NET</button>
+            <button class="opt-btn" onclick="selectOpt(this, 'be', 'Node.js Express', 8)">Node.js</button>
+            <button class="opt-btn" onclick="selectOpt(this, 'be', 'Python FastAPI', 10)">Python</button>
+          </div>
+        </div>
+
+        <div class="option-group">
+          <span class="option-label">3. DATABASE LAYER</span>
+          <div class="option-buttons">
+            <button class="opt-btn selected" onclick="selectOpt(this, 'db', 'SQL Server', 7)">SQL Server</button>
+            <button class="opt-btn" onclick="selectOpt(this, 'db', 'PostgreSQL', 6)">PostgreSQL</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="summary-box">
+        <h3 class="summary-title">Engineered Solution Spec</h3>
+        <div class="spec-line"><span>Frontend:</span> <strong id="spec-fe" style="color: var(--lime)">React / Next.js</strong></div>
+        <div class="spec-line"><span>Backend:</span> <strong id="spec-be" style="color: var(--lime)">C# / .NET Core</strong></div>
+        <div class="spec-line"><span>Database:</span> <strong id="spec-db" style="color: var(--lime)">SQL Server</strong></div>
+        <div class="spec-line" style="margin-top: 1.5rem; border: none;">
+          <span>Est. Delivery:</span> <strong id="spec-time" style="color: var(--coral); font-size: 1.2rem;">29 Days</strong>
+        </div>
+        <button class="btn-outline" style="width: 100%; margin-top: 1.5rem; justify-content: center;">Submit Requirements</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED WORK BANNER -->
+  <section class="featured-work-section reveal" id="projects">
+    <div class="featured-banner">
+      <div class="banner-preview">
+        <div class="terminal-card" style="width: 100%;">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span style="font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted)">SELECTED_PROJECT.json</span>
+          </div>
+          <div class="terminal-body">
+            <p><span class="code-keyword">const</span> <span class="code-var">product</span> = {</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">clarity:</span> <span class="code-val">true</span>,</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">craft:</span> <span class="code-val">'high'</span>,</p>
+            <p style="padding-left: 1.5rem;"><span class="code-prop">impact:</span> <span class="code-val">'real'</span></p>
+            <p>};</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="banner-content">
+        <div class="banner-meta">SELECTED WORK / 2024</div>
+        <h2 class="banner-headline">Building a calmer way to manage complexity.</h2>
+        <button class="btn-dark">
+          View Projects <i data-lucide="arrow-up-right"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING SECTION -->
+  <section class="pricing-section reveal" id="pricing">
+    <div class="tagline"><span class="tagline-dot"></span> ENGAGEMENT MODELS</div>
+    <h2 class="section-title">Transparent Pricing Structure</h2>
+
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div>
+          <h3 class="price-title">Single Sprint</h3>
+          <div class="price-amount">$1,500 <span>/ project</span></div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Ideal for landing pages, initial component kits, or small web applications.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> 1-2 Week Turnaround</li>
+            <li><i data-lucide="check"></i> Responsive Web Layout</li>
+            <li><i data-lucide="check"></i> Full Source Code Access</li>
+          </ul>
+        </div>
+        <button class="btn-outline" style="width: 100%; text-align: center; justify-content: center; margin-top: 2rem;">Get Started</button>
+      </div>
+
+      <div class="price-card featured">
+        <span class="price-badge">Most Popular</span>
+        <div>
+          <h3 class="price-title">Full Product Build</h3>
+          <div class="price-amount">$3,800 <span>/ build</span></div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Complete end-to-end full stack web application with backend API & database.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> 3-5 Week Turnaround</li>
+            <li><i data-lucide="check"></i> Database Integration</li>
+            <li><i data-lucide="check"></i> Custom Admin Control Panel</li>
+            <li><i data-lucide="check"></i> Deployment Pipeline Setup</li>
+          </ul>
+        </div>
+        <button class="btn-outline" style="width: 100%; text-align: center; justify-content: center; margin-top: 2rem; background: var(--lime); color: var(--bg-dark);">Start Project</button>
+      </div>
+
+      <div class="price-card">
+        <div>
+          <h3 class="price-title">Retainer Engineering</h3>
+          <div class="price-amount">$2,200 <span>/ month</span></div>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Dedicated developer support for continuous features, refactoring, and updates.</p>
+          <ul class="service-features">
+            <li><i data-lucide="check"></i> Priority Weekly Sprints</li>
+            <li><i data-lucide="check"></i> Bug Fixing & Refactoring</li>
+            <li><i data-lucide="check"></i> Ongoing DB Optimization</li>
+          </ul>
+        </div>
+        <button class="btn-outline" style="width: 100%; text-align: center; justify-content: center; margin-top: 2rem;">Reserve Capacity</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ ACCORDION -->
+  <section class="faq-section reveal" id="faq">
+    <div class="tagline"><span class="tagline-dot"></span> QUESTIONS & ANSWERS</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq-container">
+      <div class="faq-item">
+        <button class="faq-question">
+          What tech stack do you specialize in?
+          <i data-lucide="plus" class="faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          We specialize in modern frontend engineering (React, TypeScript, Next.js) paired with powerful backend systems built with C#, Node.js, or Python, backed by SQL Server or PostgreSQL databases.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          How do you handle project communication and tracking?
+          <i data-lucide="plus" class="faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          We utilize GitHub for code repositories and issue tracking, along with clear sprint updates so you always have direct insight into commit history and feature progress.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          Will I have complete ownership of the source code?
+          <i data-lucide="plus" class="faq-icon"></i>
+        </button>
+        <div class="faq-answer">
+          Yes, 100%. Upon completion and handover, full IP ownership of all repositories, design files, and deployment scripts is transferred to you.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <div class="brand">
+        <div class="logo-circle">JZ</div>
+        <div class="brand-text">
+          JEZ BUILDERS
+          <span>BUILT WITH INTENT.</span>
+        </div>
+      </div>
+
+      <button class="btn-outline">
+        Start a Project <i data-lucide="arrow-up-right"></i>
+      </button>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2024 JEZBUILDERS. BUILT WITH INTENT.</p>
+      <p>BASED EVERYWHERE / WORKING WORLDWIDE</p>
+    </div>
+  </footer>
+
+  <!-- DETAIL DRAWER MODAL -->
+  <div class="modal-overlay" id="drawerModal">
+    <div class="drawer-card">
+      <button class="close-modal" onclick="closeDrawer()"><i data-lucide="x"></i></button>
+      <div class="tagline"><span class="tagline-dot"></span> SPECIFICATION OVERVIEW</div>
+      <h3 id="drawerTitle" style="font-size: 2rem; margin-bottom: 1.5rem;">Service Details</h3>
+      <p id="drawerBody" style="color: var(--text-muted); font-size: 1rem; line-height: 1.8; margin-bottom: 2rem;">Full capability breakdown.</p>
+      <button class="btn-outline" onclick="closeDrawer()">Close Drawer</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT FOR ALL INTERACTIVITY -->
+  <script src"services.js">
+    // Initialize Icons
+    
+  </script>
+</body>
+  </html>
