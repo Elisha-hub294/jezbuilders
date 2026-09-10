@@ -1,685 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JEZ BUILDERS | Technical Services & Architecture</title>
-
-  <!-- Typography -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <style>
-    /* ==========================================================================
-       1. CORE DESIGN SYSTEM & VARIABLES
-       ========================================================================== */
-    :root {
-      --bg-dark: #0b0f0e;
-      --bg-card: #141a18;
-      --bg-card-hover: #1b2421;
-      --border-color: #232d29;
-      --text-main: #f0f4f2;
-      --text-muted: #83918b;
-      --lime: #ccff00;
-      --coral: #ff6b4a;
-      --coral-bg: #ff6b4a;
-      --font-main: 'Space Grotesk', sans-serif;
-      --font-code: 'Fira Code', monospace;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; background-color: var(--bg-dark); color: var(--text-main); font-family: var(--font-main); overflow-x: hidden; }
-    body { line-height: 1.6; background-color: var(--bg-dark); color: var(--text-main); }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-
-    /* ==========================================================================
-       2. RESPONSIVE NAVIGATION BAR
-       ========================================================================== */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 1000;
-      background: rgba(11, 15, 14, 0.92); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-color);
-      padding: 1.2rem 6%; display: flex; justify-content: space-between; align-items: center;
-    }
-
-    .brand { display: flex; align-items: center; gap: 14px; }
-    .logo-circle {
-      width: 42px; height: 42px; border-radius: 50%; border: 1.5px solid var(--lime);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; color: var(--lime);
-      transition: all 0.3s ease;
-    }
-    .logo-circle:hover { box-shadow: 0 0 15px rgba(204, 255, 0, 0.4); transform: rotate(15deg); }
-
-    .brand-text { font-weight: 700; font-size: 1.05rem; line-height: 1.1; letter-spacing: 1.5px; }
-    .brand-text span { display: block; font-size: 0.68rem; color: var(--text-muted); font-weight: 400; letter-spacing: 2px; }
-
-    .nav-links { display: flex; gap: 2.2rem; align-items: center; }
-    .nav-links a {
-      font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-      color: var(--text-muted); transition: color 0.3s ease; position: relative;
-    }
-    .nav-links a:hover, .nav-links a.active { color: var(--text-main); }
-    .nav-links a.active::after {
-      content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 2px; background: var(--lime);
-    }
-
-    .btn-lime {
-      border: 1px solid var(--lime); color: var(--lime); background: transparent;
-      padding: 0.7rem 1.4rem; font-size: 0.8rem; font-weight: 600; letter-spacing: 1.5px;
-      text-transform: uppercase; display: inline-flex; align-items: center; gap: 8px;
-      transition: all 0.3s ease; cursor: pointer; font-family: var(--font-main);
-    }
-    .btn-lime:hover { background: var(--lime); color: var(--bg-dark); box-shadow: 0 0 20px rgba(204, 255, 0, 0.35); }
-
-    .mobile-toggle { display: none; background: transparent; border: none; color: var(--text-main); cursor: pointer; }
-
-    /* Mobile Navigation Drawer */
-    .mobile-menu {
-      position: fixed; top: 0; right: -100%; width: 80%; max-width: 320px; height: 100vh;
-      background: var(--bg-card); border-left: 1px solid var(--border-color);
-      z-index: 1001; padding: 2.5rem 2rem; display: flex; flex-direction: column; gap: 2rem;
-      transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .mobile-menu.active { right: 0; }
-    .mobile-menu-header { display: flex; justify-content: space-between; align-items: center; }
-    .mobile-links { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 1rem; }
-    .mobile-links a { font-size: 1.1rem; font-weight: 600; letter-spacing: 2px; color: var(--text-muted); }
-    .mobile-links a:hover, .mobile-links a.active { color: var(--lime); }
-    .menu-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
-      z-index: 1000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-    }
-    .menu-overlay.active { opacity: 1; pointer-events: auto; }
-
-    /* ==========================================================================
-       3. HERO SECTION
-       ========================================================================== */
-    .hero {
-      padding: 12rem 6% 6rem; display: grid; grid-template-columns: 1.2fr 0.8fr;
-      gap: 4rem; align-items: center; min-height: 90vh; position: relative;
-    }
-
-    .meta-tag {
-      font-size: 0.78rem; text-transform: uppercase; letter-spacing: 2.5px;
-      color: var(--text-muted); display: flex; align-items: center; gap: 10px; margin-bottom: 2rem;
-      font-family: var(--font-code);
-    }
-    .meta-tag-dot { width: 7px; height: 7px; background-color: var(--lime); border-radius: 50%; box-shadow: 0 0 10px var(--lime); }
-
-    .hero-title {
-      font-size: clamp(3rem, 5.5vw, 5.2rem); font-weight: 700; line-height: 1.02;
-      letter-spacing: -2px; margin-bottom: 2rem; color: #ffffff;
-    }
-    .hero-title .highlight { color: var(--lime); }
-
-    .hero-description { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin-bottom: 2.5rem; font-weight: 400; }
-
-    /* Star Vectors Graphic */
-    .hero-graphic {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      position: relative; height: 100%; min-height: 320px;
-    }
-    .star-vector { color: var(--coral); animation: pulseFloat 6s ease-in-out infinite; }
-    .star-vector-sm { color: var(--coral); opacity: 0.8; margin-top: -30px; margin-left: 60px; animation: pulseFloat 4s ease-in-out infinite reverse; }
-
-    @keyframes pulseFloat {
-      0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
-      50% { transform: translateY(-15px) rotate(10deg) scale(1.05); }
-    }
-
-    /* ==========================================================================
-       4. FEATURED BANNER SECTION
-       ========================================================================== */
-    .featured-banner {
-      display: grid; grid-template-columns: 1fr 1fr; background: #c5d3cc; color: var(--bg-dark);
-      margin: 2rem 6%; border-radius: 4px; overflow: hidden; border: 1px solid var(--border-color);
-    }
-
-    .banner-code-preview {
-      background: #17201d; padding: 3rem; display: flex; align-items: center; justify-content: center; position: relative;
-    }
-    .code-box {
-      background: #0f1513; border: 1px solid var(--border-color); border-radius: 6px; padding: 2rem;
-      width: 100%; max-width: 380px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); transform: rotate(-2deg);
-      transition: transform 0.4s ease;
-    }
-    .code-box:hover { transform: rotate(0deg) scale(1.02); }
-    .code-box p { font-family: var(--font-code); font-size: 0.95rem; line-height: 1.8; color: #d0ded7; }
-
-    .banner-content {
-      background: var(--coral-bg); padding: 4rem 3.5rem; color: #ffffff;
-      display: flex; flex-direction: column; justify-content: space-between;
-    }
-    .banner-tag { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; font-weight: 600; }
-    .banner-heading { font-size: clamp(2rem, 3.5vw, 3.2rem); font-weight: 600; line-height: 1.1; margin: 2rem 0; letter-spacing: -1px; }
-    .banner-link {
-      font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
-      display: inline-flex; align-items: center; gap: 8px; border-bottom: 2px solid #ffffff; padding-bottom: 4px; width: max-content;
-      transition: gap 0.3s ease;
-    }
-    .banner-link:hover { gap: 14px; }
-
-    /* ==========================================================================
-       5. CAPABILITIES & SERVICES MATRIX (10 CARDS)
-       ========================================================================== */
-    .services-wrapper { padding: 8rem 6% 4rem; }
-    .section-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3.5rem; flex-wrap: wrap; gap: 2rem; }
-    .section-title { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; letter-spacing: -1px; }
-
-    .filter-bar { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-    .filter-btn {
-      background: transparent; border: 1px solid var(--border-color); color: var(--text-muted);
-      padding: 0.6rem 1.4rem; font-size: 0.82rem; font-family: var(--font-main); font-weight: 600;
-      letter-spacing: 1px; cursor: pointer; transition: all 0.3s ease; border-radius: 2px;
-    }
-    .filter-btn.active, .filter-btn:hover { background: var(--lime); color: var(--bg-dark); border-color: var(--lime); }
-
-    .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; }
-
-    .service-card {
-      background: var(--bg-card); border: 1px solid var(--border-color); padding: 2.5rem 2rem;
-      border-radius: 4px; display: flex; flex-direction: column; justify-content: space-between;
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); cursor: pointer; position: relative; overflow: hidden;
-    }
-    .service-card::before {
-      content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0%; background: var(--lime); transition: height 0.4s ease;
-    }
-    .service-card:hover { transform: translateY(-8px); border-color: var(--border-color); background: var(--bg-card-hover); }
-    .service-card:hover::before { height: 100%; }
-
-    .card-num { font-family: var(--font-code); color: var(--lime); font-size: 0.85rem; margin-bottom: 1.2rem; }
-    .card-icon { color: var(--text-main); margin-bottom: 1.2rem; }
-    .card-heading { font-size: 1.35rem; font-weight: 600; margin-bottom: 0.8rem; line-height: 1.25; }
-    .card-body { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1.8rem; line-height: 1.6; }
-
-    .card-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: auto; padding-top: 1.2rem; border-top: 1px solid var(--border-color); }
-    .tag-pill { font-family: var(--font-code); font-size: 0.72rem; color: var(--text-muted); background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); padding: 3px 8px; border-radius: 2px; }
-
-    /* ==========================================================================
-       6. INTERACTIVE SYSTEM ARCHITECTURE BUILDER
-       ========================================================================== */
-    .builder-section { padding: 6rem 6%; border-top: 1px solid var(--border-color); }
-    .builder-box {
-      background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 6px; padding: 3rem;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
-    }
-
-    .stack-selector { display: flex; flex-direction: column; gap: 1rem; }
-    .stack-option {
-      background: var(--bg-dark); border: 1px solid var(--border-color); padding: 1.2rem;
-      border-radius: 4px; cursor: pointer; transition: all 0.3s ease; display: flex; justify-content: space-between; align-items: center;
-    }
-    .stack-option.active, .stack-option:hover { border-color: var(--lime); background: rgba(204, 255, 0, 0.03); }
-    .stack-title { font-weight: 600; font-size: 1.05rem; }
-    .stack-sub { font-size: 0.8rem; color: var(--text-muted); }
-
-    .stack-preview-panel {
-      background: var(--bg-dark); border: 1px solid var(--border-color); border-radius: 6px; padding: 2rem;
-      font-family: var(--font-code); font-size: 0.85rem; position: relative; min-height: 280px;
-    }
-    .stack-diagram { display: flex; flex-direction: column; gap: 12px; }
-    .node {
-      background: var(--bg-card); border: 1px dashed var(--lime); padding: 0.8rem; text-align: center; color: var(--lime); border-radius: 4px;
-    }
-
-    /* ==========================================================================
-       7. INTERACTIVE MODAL & FOOTER
-       ========================================================================== */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
-      z-index: 2000; display: none; justify-content: center; align-items: center; padding: 2rem;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal-content {
-      background: var(--bg-card); border: 1px solid var(--border-color); max-width: 650px; width: 100%;
-      padding: 3rem; border-radius: 6px; position: relative; max-height: 90vh; overflow-y: auto;
-    }
-    .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: none; color: var(--text-muted); cursor: pointer; }
-    .modal-close:hover { color: var(--lime); }
-
-    footer {
-      border-top: 1px solid var(--border-color); padding: 4rem 6% 2rem;
-      display: flex; flex-direction: column; gap: 3rem; background: var(--bg-dark);
-    }
-    .footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
-    .footer-bottom { display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-code); border-top: 1px solid var(--border-color); padding-top: 2rem; }
-
-    /* Responsive Media Queries */
-    @media (max-width: 992px) {
-      .hero { grid-template-columns: 1fr; padding-top: 9rem; text-align: center; }
-      .meta-tag { justify-content: center; }
-      .hero-graphic { display: none; }
-      .featured-banner { grid-template-columns: 1fr; }
-      .builder-box { grid-template-columns: 1fr; }
-    }
-    @media (max-width: 820px) {
-      .nav-links { display: none; }
-      .mobile-toggle { display: block; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- MOBILE OVERLAY & MENU DRAWER -->
-  <div class="menu-overlay" id="menuOverlay" onclick="closeMobileNav()"></div>
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-header">
-      <div class="brand">
-        <div class="logo-circle">JZ</div>
-        <div class="brand-text">JEZ BUILDERS</div>
-      </div>
-      <button class="mobile-toggle" onclick="closeMobileNav()"><i data-lucide="x" size="24"></i></button>
-    </div>
-    <div class="mobile-links">
-      <a href="about.html" onclick="closeMobileNav()">ABOUT</a>
-      <a href="#services" class="active" onclick="closeMobileNav()">SERVICES</a>
-      <a href="projects.html" onclick="closeMobileNav()">PROJECTS</a>
-      <a href="contact.html" onclick="closeMobileNav()">CONTACT</a>
-    </div>
-    <a href="contact.html" class="btn-lime" style="margin-top: auto; text-align: center; justify-content: center;">
-      START A PROJECT <i data-lucide="arrow-up-right"></i>
-    </a>
-  </div>
-
-  <!-- NAVIGATION -->
-  <nav>
-    <div class="brand">
-      <div class="logo-circle">JZ</div>
-      <div class="brand-text">
-        JEZ BUILDERS
-        <span>INDEPENDENT DIGITAL BUILDERS</span>
-      </div>
-    </div>
-
-    <div class="nav-links">
-      <a href="about.html">ABOUT</a>
-      <a href="#services" class="active">SERVICES</a>
-      <a href="projects.html">PROJECTS</a>
-      <a href="contact.html">CONTACT</a>
-    </div>
-
-    <div style="display: flex; gap: 1rem; align-items: center;">
-      <a href="contact.html" class="btn-lime">
-        START A PROJECT <i data-lucide="arrow-up-right"></i>
-      </a>
-      <button class="mobile-toggle" onclick="openMobileNav()">
-        <i data-lucide="menu" size="26"></i>
+<!-- MAIN CONTAINER -->
+<main class="container">
+  <!-- HERO SECTION WITH CODE PREVIEW -->
+  <section class="hero-split">
+    <div>
+      <p class="tagline">● OUR CAPABILITIES / EST. 2019</p>
+      <h1 class="main-title">
+        Engineering solutions for <span>digital growth.</span>
+      </h1>
+      <p class="description">
+        We design, build, and deploy custom digital products engineered to help
+        developer teams and tech brands win client trust.
+      </p>
+      <button class="btn-start" onclick="handleStartProject()">
+        DISCOVER OUR WORK ↗
       </button>
     </div>
-  </nav>
 
-  <!-- HERO SECTION -->
-  <section class="hero" id="about">
-    <div>
-      <div class="meta-tag">
-        <span class="meta-tag-dot"></span> INDEPENDENT DIGITAL BUILDERS / EST. 2019
+    <!-- TERMINAL MOCKUP -->
+    <div class="terminal-card">
+      <div class="terminal-dots">
+        <span class="dot red"></span>
+        <span class="dot yellow"></span>
+        <span class="dot green"></span>
       </div>
-      <h1 class="hero-title">
-        Good ideas<br>deserve<br><span class="highlight">good software.</span>
-      </h1>
-      <p class="hero-description">
-        We design, engineer, and scale modern web applications, distributed APIs, and performant backends built to endure.
-      </p>
-      <div style="display: flex; gap: 1.2rem; flex-wrap: wrap;">
-        <a href="#services" class="btn-lime">EXPLORE CAPABILITIES <i data-lucide="arrow-down"></i></a>
-        <a href="projects.html" class="btn-lime" style="border-color: var(--border-color); color: var(--text-main);">VIEW PROJECTS ↗</a>
-      </div>
-    </div>
-
-    <!-- Star Vector Graphics -->
-    <div class="hero-graphic">
-      <svg class="star-vector" width="180" height="180" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path d="M50 0 V100 M0 50 H100 M15 15 L85 85 M15 85 L85 15" />
-      </svg>
-      <svg class="star-vector-sm" width="110" height="110" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2.5">
-        <path d="M50 0 V100 M0 50 H100 M15 15 L85 85 M15 85 L85 15" />
-      </svg>
-    </div>
-  </section>
-
-  <!-- FEATURED SECTION -->
-  <section class="featured-banner">
-    <div class="banner-code-preview">
-      <div class="code-box">
-        <p><span style="color: var(--coral);">const</span> <span style="color: var(--lime);">product</span> = {</p>
-        <p style="padding-left: 1.5rem;"><span style="color: #83918b;">clarity:</span> <span style="color: var(--lime);">true</span>,</p>
-        <p style="padding-left: 1.5rem;"><span style="color: #83918b;">craft:</span> <span style="color: #ffffff;">'high'</span>,</p>
-        <p style="padding-left: 1.5rem;"><span style="color: #83918b;">impact:</span> <span style="color: #ffffff;">'real'</span></p>
-        <p>};</p>
-      </div>
-    </div>
-
-    <div class="banner-content">
-      <span class="banner-tag">SELECTED WORK / TECHNICAL ARCHITECTURE</span>
-      <h2 class="banner-heading">Building a calmer way to manage complexity.</h2>
-      <a href="projects.html" class="banner-link">VIEW PROJECTS ↗</a>
-    </div>
-  </section>
-
-  <!-- SERVICES & CAPABILITIES (10 CARDS GRID) -->
-  <section class="services-wrapper" id="services">
-    <div class="section-header">
-      <div>
-        <div class="meta-tag" style="margin-bottom: 0.5rem;"><span class="meta-tag-dot"></span> WHAT WE DO</div>
-        <h2 class="section-title">Technical Capabilities</h2>
-      </div>
-
-      <div class="filter-bar">
-        <button class="filter-btn active" onclick="filterServices('all', this)">ALL SERVICES</button>
-        <button class="filter-btn" onclick="filterServices('frontend', this)">FRONTEND</button>
-        <button class="filter-btn" onclick="filterServices('backend', this)">BACKEND & API</button>
-        <button class="filter-btn" onclick="filterServices('database', this)">DATABASE & SYSTEMS</button>
-        <button class="filter-btn" onclick="filterServices('devops', this)">DEVOPS & CLOUD</button>
-      </div>
-    </div>
-
-    <div class="services-grid" id="servicesGrid">
-      
-      <!-- Card 01 -->
-      <div class="service-card" data-cat="frontend" onclick="openModal('Full-Stack Web Engineering', 'We engineer production-grade web applications using React, TypeScript, and high-speed CSS architectures. Built for max performance, low latency, and fluid interaction.')">
-        <div>
-          <div class="card-num">/ 01</div>
-          <div class="card-icon"><i data-lucide="layout" size="30"></i></div>
-          <h3 class="card-heading">Full-Stack Web Engineering</h3>
-          
-      <p class="card-body">Clean, resilient web applications backed by modern web standards. Built for speed, accessibility, and precision.</p>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">React</span>
-          <span class="tag-pill">TypeScript</span>
-          <span class="tag-pill">Next.js</span>
-        </div>
-      </div>
-  <!-- Card 02 -->
-      <div class="service-card" data-cat="backend" onclick="openModal('Backend & Microservices API', 'High-throughput APIs built with enterprise C# (.NET Core), Python, and Node. Native integration with enterprise authentication and automated workflow pipelines.')">
-        <div>
-          <div class="card-num">/ 02</div>
-          <div class="card-icon"><i data-lucide="server" size="30"></i></div>
-          <h3 class="card-heading">Backend & Distributed APIs</h3>
-          <p class="card-body">Type-safe REST and GraphQL APIs engineered to process heavy loads with zero downtime and low memory footprint.</p>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">C# / .NET</span>
-          <span class="tag-pill">Python</span>
-          <span class="tag-pill">GraphQL</span>
-        </div>
-      </div>
-
-      <!-- Card 03 -->
-      <div class="service-card" data-cat="database" onclick="openModal('Database Architecture & Tuning', 'Relational and document database optimization. Complete schema design, migration management, index tuning, and fault-tolerant backup setups.')">
-        <div>
-          <div class="card-num">/ 03</div>
-          <div class="card-icon"><i data-lucide="database" size="30"></i></div>
-          <h3 class="card-heading">Database Systems & ORM</h3>
-          <p class="card-body">High-efficiency relational schema modeling, indexing strategy, automated migrations, and SQL query optimizations.</p>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">PostgreSQL</span>
-          <span class="tag-pill">SQL Server</span>
-          <span class="tag-pill">EF Core</span>
-        </div>
-      </div>
-
-      <!-- Card 04 -->
-      <div class="service-card" data-cat="devops" onclick="openModal('DevOps & Container Deployment', 'Continuous integration, containerized deployments with Docker, automated deployment pipelines, and environment isolation.')">
-        <div>
-          <div class="card-num">/ 04</div>
-          <div class="card-icon"><i data-lucide="container" size="30"></i></div>
-          <h3 class="card-heading">DevOps & Cloud Pipelines</h3>
-          <p class="card-body">Automated deployment setups, Docker containerization, and automated test runners for seamless deployments.</p>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">Docker</span>
-          <span class="tag-pill">GitHub Actions</span>
-          <span class="tag-pill">Linux</span>
-        </div>
-      </div>
-
-      <!-- Card 05 -->
-      <div class="service-card" data-cat="frontend" onclick="openModal('UI/UX System Design', 'Component libraries, design tokens, and modular UI systems engineered in Figma and translated directly into reusable clean code.')">
-        <div>
-          <div class="card-num">/ 05</div>
-          <div class="card-icon"><i data-lucide="palette" size="30"></i></div>
-          <h3 class="card-heading">Design Systems & UI</h3>
-          <p class="card-body">Design tokens, interactive component systems, and responsive layouts crafted for enterprise scalability.</p>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">Figma</span>
-          <span class="tag-pill">CSS Modules</span>
-          <span class="tag-pill">Tokens</span>
-        </div>
-      </div>
-
-      <!-- Card 06 -->
-      <div class="service-card" data-cat="backend" onclick="openModal('Real-time Communication Systems', 'WebSocket integration, real-time message broadcasting, and event-driven architecture for messaging platforms and live dashboards.')">
-        <div>
-          <div class="card-num">/ 06</div>
-          <div class="card-icon"><i data-lucide="radio" size="30"></i></div>
-          <h3 class="card-heading">Real-Time Messaging</h3>
-          <p class="card-body">Bi-directional WebSocket infrastructure and event-driven pipelines engineered for real-time applications.</p>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">WebSockets</span>
-          <span class="tag-pill">SignalR</span>
-          <span class="tag-pill">Redis</span>
-        </div>
-      </div>
-
-      <!-- Card 07 -->
-      <div class="service-card" data-cat="database" onclick="openModal('Cache & In-Memory Storage', 'Ultra-fast caching layers using Redis and MemoryCache to offload database load and accelerate user response times.')">
-        <div>
-          <div class="card-num">/ 07</div>
-          <div class="card-icon"><i data-lucide="cpu" size="30"></i></div>
-          <h3 class="card-heading">In-Memory Caching</h3>
-          <p class="card-body">Ultra-low latency data access setups with distributed Redis stores and intelligent key invalidation patterns.</p>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">Redis</span>
-          <span class="tag-pill">Pub/Sub</span>
-          <span class="tag-pill">Key-Value</span>
-        </div>
-      </div>
- <!-- Card 08 -->
-      <div class="service-card" data-cat="backend" onclick="openModal('Authentication & Security Systems', 'JWT-based auth, OAuth2 identity providers, role-based access control (RBAC), and encryption protocols for data safety.')">
-        <div>
-          <div class="card-num">/ 08</div>
-          <div class="card-icon"><i data-lucide="shield-check" size="30"></i></div>
-          <h3 class="card-heading">Identity & Auth Security</h3>
-          <p class="card-body">Secure authentication, token refresh flows, RBAC authorization, and API security auditing.</p>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">OAuth2</span>
-          <span class="tag-pill">JWT</span>
-          <span class="tag-pill">RBAC</span>
-        </div>
-      </div>
-
-      <!-- Card 09 -->
-      <div class="service-card" data-cat="frontend" onclick="openModal('PWA & Mobile Optimization', 'Progressive Web Apps configured with offline caching capabilities, mobile responsiveness, and desktop-level performance.')">
-        <div>
-          <div class="card-num">/ 09</div>
-          <div class="card-icon"><i data-lucide="smartphone" size="30"></i></div>
-          <h3 class="card-heading">PWA & Mobile Performance</h3>
-          <p class="card-body">Mobile-first progressive web applications with offline capabilities, service workers, and snappy responsiveness.</p>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">PWA</span>
-          <span class="tag-pill">Service Worker</span>
-          <span class="tag-pill">Mobile UI</span>
-        </div>
-      </div>
-
-      <!-- Card 10 -->
-      <div class="service-card" data-cat="devops" onclick="openModal('Performance & Code Optimization', 'Comprehensive frontend and backend code auditing, bundle size reduction, memory leak debugging, and query acceleration.')">
-        <div>
-          <div class="card-num">/ 10</div>
-          <div class="card-icon"><i data-lucide="gauge" size="30"></i></div>
-          <h3 class="card-heading">Performance Audit & Tuning</h3>
-          <p class="card-body">Profiling codebase execution times, memory usage optimizations, and frontend rendering speed improvements.</p>
-        </div>
-        <div class="card-tags">
-          <span class="tag-pill">Profiling</span>
-          <span class="tag-pill">Lighthouse</span>
-          <span class="tag-pill">Memory Fixes</span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- INTERACTIVE ARCHITECTURE CONFIGURATOR -->
-  <section class="builder-section">
-    <div class="meta-tag"><span class="meta-tag-dot"></span> INTERACTIVE STACK CONFIGURATOR</div>
-    <h2 class="section-title" style="margin-bottom: 2rem;">Architect Your Solution</h2>
-
-    <div class="builder-box">
-      <div class="stack-selector">
-        <div class="stack-option active" onclick="selectStack('webapp', this)">
-          <div>
-            <div class="stack-title">High-Scale Web App</div>
-            <div class="stack-sub">Next.js + C# Web API + PostgreSQL</div>
-          </div>
-          <i data-lucide="chevron-right"></i>
-        </div>
-
-        <div class="stack-option" onclick="selectStack('realtime', this)">
-          <div>
-            <div class="stack-title">Real-Time Data Pipeline</div>
-            <div class="stack-sub">Node.js + WebSockets + Redis</div>
-          </div>
-          <i data-lucide="chevron-right"></i>
-        </div>
-
-        <div class="stack-option" onclick="selectStack('python_ai', this)">
-          <div>
-            <div class="stack-title">Async Python Microservice</div>
-            <div class="stack-sub">FastAPI + Asyncpg + Docker</div>
-          </div>
-          <i data-lucide="chevron-right"></i>
-        </div>
-      </div>
-
-      <div class="stack-preview-panel">
-        <div style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.75rem;">// ACTIVE ARCHITECTURE PIPELINE</div>
-        <div class="stack-diagram" id="stackDiagram">
-          <!-- Populated via JS -->
-        </div>
+      <div class="terminal-code">
+        <span class="code-key">const</span> project = {<br />
+        &nbsp;&nbsp;clarity: <span class="code-val-bool">true</span>,<br />
+        &nbsp;&nbsp;craft: <span class="code-val-str">'high'</span>,<br />
+        &nbsp;&nbsp;impact: <span class="code-val-str">'real'</span>,<br />
+        &nbsp;&nbsp;delivery: <span class="code-val-str">'on-time'</span><br />
+        };
       </div>
     </div>
   </section>
 
-  <!-- MODAL FOR SERVICE DETAILS -->
-  <div class="modal-overlay" id="serviceModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="closeModal()"><i data-lucide="x" size="24"></i></button>
-      <h3 id="modalTitle" style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--lime);">Service Spec</h3>
-      <p id="modalDescription" style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 2rem;"></p>
-      <a href="contact.html" class="btn-lime">BOOK THIS SERVICE ↗</a>
+  <!-- PROOF / STATS BAR -->
+  <section class="stats-bar">
+    <div class="stat-item">
+      <h3>25+</h3>
+      <p>Projects Built</p>
     </div>
+    <div class="stat-item">
+      <h3>100%</h3>
+      <p>Client Satisfaction</p>
+    </div>
+    <div class="stat-item">
+      <h3>99.9%</h3>
+      <p>Uptime Guaranteed</p>
+    </div>
+  </section>
+
+  <!-- FILTER BUTTONS -->
+  <div class="filter-section">
+    <button class="filter-btn active" onclick="filterServices('all', this)">
+      ALL SERVICES
+    </button>
+    <button class="filter-btn" onclick="filterServices('frontend', this)">
+      FRONTEND
+    </button>
+    <button class="filter-btn" onclick="filterServices('backend', this)">
+      BACKEND
+    </button>
+    <button class="filter-btn" onclick="filterServices('design', this)">
+      UI/UX DESIGN
+    </button>
   </div>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-top">
-      <div class="brand">
-        <div class="logo-circle">JZ</div>
-        <div class="brand-text">
-          JEZ BUILDERS
-          <span>INDEPENDENT DIGITAL BUILDERS</span>
-        </div>
-      </div>
+  <!-- SERVICES GRID -->
+  <div class="services-grid" id="servicesGrid">
+    <!-- Injected via JavaScript -->
+  </div>
 
-      <div class="nav-links">
-        <a href="about.html">ABOUT</a>
-        <a href="#services">SERVICES</a>
-        <a href="projects.html">PROJECTS</a>
-        <a href="contact.html">CONTACT</a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <div>© 2026 JEZBUILDERS. BUILT WITH INTENT.</div>
-      <div>BASED EVERYWHERE / WORKING WORLDWIDE</div>
-    </div>
-  </footer>
-
-  <!-- INTERACTIVITY SCRIPTS -->
-  <script>
-    // Initialize Lucide Icons
-    if (typeof lucide !== 'undefined') { lucide.createIcons(); }
-
-    // Mobile Navigation Controls
-    function openMobileNav() {
-      document.getElementById('mobileMenu').classList.add('active');
-      document.getElementById('menuOverlay').classList.add('active');
-    }
-
-    function closeMobileNav() {
-      document.getElementById('mobileMenu').classList.remove('active');
-      document.getElementById('menuOverlay').classList.remove('active');
-    }
-
-    // Service Filtering
-    function filterServices(category, btn) {
-      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const cards = document.querySelectorAll('.service-card');
-      cards.forEach(card => {
-        if (category === 'all' || card.dataset.cat === category) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    // Modal Control
-    function openModal(title, description) {
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalDescription').innerText = description;
-      document.getElementById('serviceModal').classList.add('open');
-    }
-
-    function closeModal() {
-      document.getElementById('serviceModal').classList.remove('open');
-    }
-
-    // Architecture Configurator Logic
-    const stacks = {
-      webapp: [
-        "Client Layer: React / Next.js (Edge Rendered)",
-        "API Gateway: C# .NET Core REST Endpoint",
-        "Database Layer: PostgreSQL Cluster + Redis Cache"
-      ],
-      realtime: [
-        "Client Layer: WebSockets / Event Listeners",
-        "Messaging Node: Node.js Broker & Pub/Sub",
-        "Cache & Memory: Redis Stateful Memory Store"
-      ],
-      python_ai: [
-        "Input API: FastAPI Async Router",
-        "Processing Engine: Python Data Pipeline",
-        "Containerization: Isolated Docker Sandbox"
-      ]
-    };
-
-    function selectStack(key, element) {
-      document.querySelectorAll('.stack-option').forEach(el => el.classList.remove('active'));
-      element.classList.add('active');
-
-      const diagram = document.getElementById('stackDiagram');
-      diagram.innerHTML = stacks[key].map(step => `<div class="node">${step}</div>`).join('');
-    }
-
-    // Load initial stack
-    selectStack('webapp', document.querySelector('.stack-option'));
-  </script>
-</body>
-  </html>
+  <!-- CTA FOOTER -->
+  <section class="cta-box">
+    <h2>Ready to turn your idea into software?</h2>
+    <p>Let’s build something sharp, fast, and scalable together.</p>
+    <button class="btn-start" onclick="handleStartProject()">
+      START A PROJECT ↗
+    </button>
+  </section>
+</main>

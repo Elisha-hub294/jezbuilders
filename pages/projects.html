@@ -1,73 +1,221 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Selected digital product work by JEZBuilders."
-    />
-    <title>Projects | JEZBuilders</title>
-    <link rel="stylesheet" href="../css/styles.css" />
-  </head>
-  <body>
-    <div class="site-shell">
-      <header class="site-header">
-        <a class="logo" href="../index.html" aria-label="Go to JEZBuilders home"
-          ><span>JZ</span><strong>JEZ<br />BUILDERS</strong></a
-        ><button
-          class="menu-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="main-nav"
-        >
-          MENU <span>â˜°</span>
-        </button>
-        <nav id="main-nav" class="nav-links" aria-label="Main navigation">
-          <a href="about.html">about</a><a href="services.html">services</a
-          ><a class="active" href="projects.html">projects</a
-          ><a href="pricing.html">pricing</a><a href="contact.html">contact</a
-          ><a class="nav-cta" href="contact.html"
-            >Start a project <span>â†—</span></a
-          >
-        </nav>
-      </header>
-      <main>
-        <section class="inner-page section-pad">
-          <div class="page-intro compact">
-            <div class="eyebrow">
-              <span class="signal-dot"></span> A few things we have made
-            </div>
-            <h1>Work with<br /><em>weight.</em></h1>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Selected digital product work by JEZBuilders — websites, web apps, and custom products, with the outcomes behind them." />
+  <title>Projects | JEZBuilders</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/projects.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="logo" href="../index.html" aria-label="Go to JEZBuilders home"
+        ><span>JZ</span><strong>JEZ<br />BUILDERS</strong></a
+      ><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+        MENU <span>☰</span>
+      </button>
+      <nav id="main-nav" class="nav-links" aria-label="Main navigation">
+        <a href="../index.html">home</a>
+        <a href="about.html">about</a><a href="services.html">services</a
+        ><a class="active" href="projects.html">projects</a>
+        <a href="../pages/pricing.html">pricing</a
+        ><a href="contact.html">contact</a
+        ><a class="nav-cta" href="contact.html">Start a project <span>↗</span></a>
+      </nav>
+    </header>
+
+    <main class="projects-page">
+
+      <!-- PAGE INTRO -->
+      <section class="inner-page projects-hero section-pad">
+        <div class="page-intro compact">
+          <div class="eyebrow"><span class="signal-dot"></span> A few things we have made</div>
+          <h1>Work with<br /><em>weight.</em></h1>
+          <p class="large-copy intro-copy">
+            Every product on this page shipped to real users and moved a real number. Filter by
+            the kind of work, then open a case study for the detail behind the result.
+          </p>
+        </div>
+
+        <div class="hero-stats-grid">
+          <div class="stat-card">
+            <strong>50+</strong>
+            <span>Projects Delivered</span>
           </div>
-          <div class="project-grid">
-            <article class="project-card project-orange">
-              <div class="project-visual">
-                <span class="orbit orbit-one"></span
-                ><span class="orbit orbit-two"></span><b>north<br />star</b>
+          <div class="stat-card">
+            <strong>12</strong>
+            <span>Industries Served</span>
+          </div>
+          <div class="stat-card">
+            <strong>&lt; 1.2s</strong>
+            <span>Avg Load Performance</span>
+          </div>
+          <div class="stat-card">
+            <strong>100%</strong>
+            <span>Client Satisfaction</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- FILTER + GRID -->
+      <section class="section-pad projects-grid-section">
+        <div class="section-label">[ 001 / Selected work ]</div>
+
+        <div class="proj-filter-bar" role="group" aria-label="Filter projects by type">
+          <button class="proj-filter-btn active" type="button" data-filter="all">All work</button>
+          <button class="proj-filter-btn" type="button" data-filter="website">Websites</button>
+          <button class="proj-filter-btn" type="button" data-filter="webapp">Web apps</button>
+          <button class="proj-filter-btn" type="button" data-filter="product">Products</button>
+          <button class="proj-filter-btn" type="button" data-filter="design">Design</button>
+        </div>
+
+        <div class="showcase-grid" id="projectsGrid" aria-live="polite">
+          <!-- injected by projects.js -->
+        </div>
+        <p class="proj-empty" id="projectsEmpty" hidden>Nothing filed under that category yet — check back soon.</p>
+      </section>
+
+      <!-- FLAGSHIP SPOTLIGHT -->
+      <section class="feature-strip spotlight-strip" aria-labelledby="spotlight-title">
+        <div class="feature-image spotlight-visual">
+          <div class="mock-app" aria-hidden="true">
+            <div class="mock-app-bar">
+              <span class="mock-dot"></span><span class="mock-dot"></span><span class="mock-dot"></span>
+              <span class="mock-app-title">meridian / patient queue</span>
+            </div>
+            <div class="mock-app-body">
+              <div class="mock-app-side">
+                <span class="side-block active"></span>
+                <span class="side-block"></span>
+                <span class="side-block"></span>
+                <span class="side-block"></span>
               </div>
-              <span>Northstar / Brand platform</span>
-              <h2>Turning a new category into a clear point of view.</h2>
-            </article>
-            <article class="project-card project-green">
-              <div class="project-visual">
-                <div class="dashboard">
-                  <span></span><span></span><span></span><strong>72%</strong>
+              <div class="mock-app-main">
+                <div class="mock-app-row">
+                  <span class="row-avatar"></span>
+                  <span class="row-line long"></span>
+                  <span class="row-pill pill-acid">On time</span>
+                </div>
+                <div class="mock-app-row">
+                  <span class="row-avatar"></span>
+                  <span class="row-line"></span>
+                  <span class="row-pill pill-coral">Delayed</span>
+                </div>
+                <div class="mock-app-row">
+                  <span class="row-avatar"></span>
+                  <span class="row-line long"></span>
+                  <span class="row-pill pill-acid">On time</span>
+                </div>
+                <div class="mock-app-chart">
+                  <span style="--h: 30%"></span><span style="--h: 55%"></span><span style="--h: 40%"></span
+                  ><span style="--h: 72%"></span><span style="--h: 61%"></span><span style="--h: 84%"></span>
                 </div>
               </div>
-              <span>Fieldwork / SaaS product</span>
-              <h2>Making data feel like a useful conversation.</h2>
-            </article>
+            </div>
           </div>
-        </section>
-      </main>
-      <footer>
-        <a class="logo" href="../index.html" aria-label="Go to JEZBuilders home"
-          ><span>JZ</span><strong>JEZ<br />BUILDERS</strong></a
-        ><span>Â© 2024 JEZBuilders. Built with intent.</span
-        ><span>Based everywhere / Working worldwide</span>
-      </footer>
+        </div>
+        <div class="feature-note">
+          <span>Flagship / Healthcare product</span>
+          <h3 id="spotlight-title">Meridian Health: a queue system clinics actually trust.</h3>
+          <p class="spotlight-copy">
+            Front-desk staff were double-booking rooms from three disconnected spreadsheets. We
+            replaced them with one real-time queue that syncs check-in, room status, and provider
+            schedules.
+          </p>
+          <div class="spotlight-metrics">
+            <div><strong>-64%</strong><span>Patient wait time</span></div>
+            <div><strong>3</strong><span>Clinics rolled out</span></div>
+            <div><strong>9 wks</strong><span>Discovery to launch</span></div>
+          </div>
+          <a class="arrow-link spotlight-link" href="#" data-case="meridian">Read the full case study <span>↗</span></a>
+        </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="home-testimonials section-pad">
+        <div class="section-header-block">
+          <div class="section-label">[ 002 / From the people who shipped with us ]</div>
+          <h2>What the work<br /><span>actually changed.</span></h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">"Northstar gave us language for the category before our competitors had any. Sales stopped explaining what we do and started closing."</p>
+            <div class="client-info">
+              <strong>Priya Nathan</strong>
+              <span>Co-founder, Northstar</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">"Front desk staff picked up Meridian in a single shift. No training deck, no support tickets in week one — that's the real benchmark."</p>
+            <div class="client-info">
+              <strong>Dr. Femi Okafor</strong>
+              <span>Clinical Director, Meridian Health</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">"Fieldwork turned a spreadsheet nobody opened into a dashboard our reps check every morning. Retention on the tool itself went up, not just the data."</p>
+            <div class="client-info">
+              <strong>Marcus Toledo</strong>
+              <span>Ops Lead, Fieldwork</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="home-cta section-pad projects-cta">
+        <div class="cta-inner-box">
+          <div class="cta-badge"><span class="signal-dot"></span> Currently booking Q1 slots</div>
+          <h2>Want your product on this page next?</h2>
+          <p>Tell us what you're building and where it's stuck. We'll tell you honestly whether we're the right team for it.</p>
+          <div class="cta-action-btns">
+            <a href="contact.html" class="btn-primary">Start a project <span>↗</span></a>
+            <a href="pricing.html" class="arrow-link">See pricing &amp; packages <span>↗</span></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a class="logo" href="../index.html" aria-label="Go to JEZBuilders home"
+        ><span>JZ</span><strong>JEZ<br />BUILDERS</strong></a
+      ><span>© 2024 JEZBuilders. Built with intent.</span
+      ><span>Based everywhere / Working worldwide</span>
+    </footer>
+  </div>
+
+  <!-- CASE STUDY MODAL -->
+  <div class="proj-modal" id="projModal" aria-hidden="true">
+    <div class="proj-modal-backdrop" data-close></div>
+    <div class="proj-modal-card" role="dialog" aria-modal="true" aria-labelledby="projModalTitle">
+      <button class="proj-modal-close" type="button" data-close aria-label="Close case study">✕</button>
+      <div class="proj-modal-scroll">
+        <span class="proj-modal-category" id="projModalCategory"></span>
+        <h2 id="projModalTitle"></h2>
+        <p class="proj-modal-tagline" id="projModalTagline"></p>
+
+        <div class="proj-modal-metrics" id="projModalMetrics"></div>
+
+        <div class="proj-modal-block">
+          <h4>The challenge</h4>
+          <p id="projModalChallenge"></p>
+        </div>
+        <div class="proj-modal-block">
+          <h4>What we built</h4>
+          <p id="projModalSolution"></p>
+        </div>
+
+        <div class="proj-modal-stack" id="projModalStack"></div>
+      </div>
     </div>
-    <script src="../js/script.js"></script>
-  </body>
+  </div>
+
+  <script src="../js/script.js"></script>
+  <script src="../js/projects.js"></script>
+</body>
 </html>
